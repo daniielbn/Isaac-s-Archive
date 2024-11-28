@@ -1,5 +1,6 @@
 package com.example.isaacsarchive
 
+import Clases.AdminSQLiteOpenHelper
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -93,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun verificarUsuario(usuario: String, contrasena: String): Boolean {
         if (comprobarUsuario() && comprobarContraseña()) {
-            val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive100", null, 1)
+            val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
             val bd = admin.writableDatabase
             val cursor = bd.rawQuery("select * from Usuarios where usuario = ? and contrasena = ?", arrayOf(usuario, contrasena))
             if (cursor.moveToFirst()) {

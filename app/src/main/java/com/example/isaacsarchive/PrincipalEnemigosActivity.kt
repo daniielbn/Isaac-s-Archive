@@ -1,16 +1,15 @@
 package com.example.isaacsarchive
 
+import Adaptadores.AdaptadorEnemigo
+import Clases.AdminSQLiteOpenHelper
+import Clases.Enemigo
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.CheckBox
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.isaacsarchive.databinding.ActivityPrincipalEnemigosBinding
 
@@ -62,18 +61,17 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
     }
 
     fun llenarLista() {
-        val dbHelper = AdminSQLiteOpenHelper(this, "IsaacsArchive100", null, 1)
+        val dbHelper = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
         val db = dbHelper.readableDatabase
 
         try {
-            val cursor = db.rawQuery("SELECT nombre, tipo, descripcion, desbloqueado FROM Enemigos", null)
+            val cursor = db.rawQuery("SELECT nombre, tipo, descripcion FROM Enemigos", null)
             if (cursor.moveToFirst()) {
                 do {
                     val nombre = cursor.getString(0)
                     val tipo = cursor.getString(1)
                     val descripcion = cursor.getString(2)
-                    val desbloqueado = cursor.getString(3).toBoolean()
-                    val enemigo = Enemigo(nombre, tipo, descripcion, desbloqueado)
+                    val enemigo = Enemigo(nombre, tipo, descripcion)
                     listaEnemigos.add(enemigo)
                 } while (cursor.moveToNext())
             }
@@ -87,7 +85,7 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
 
     fun setupRecyclerView() {
         binding.rvLista.layoutManager = LinearLayoutManager(this)
-        adaptador = AdaptadorEnemigo(listaEnemigos)
+        adaptador = AdaptadorEnemigo(listaEnemigos, usuario)
         binding.rvLista.adapter = adaptador
     }
 

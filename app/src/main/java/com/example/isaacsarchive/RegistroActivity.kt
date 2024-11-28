@@ -1,8 +1,8 @@
 package com.example.isaacsarchive
 
+import Clases.AdminSQLiteOpenHelper
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -10,8 +10,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import java.security.MessageDigest
 
 class RegistroActivity : AppCompatActivity() {
@@ -41,7 +39,7 @@ class RegistroActivity : AppCompatActivity() {
 
     fun registrar(v: View?) {
         if (comprobarUsuario() && comprobarContrasena() && verificarUsuario()) {
-            val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive100", null, 1)
+            val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
             val bd = admin.writableDatabase
             val contrasenaEncriptada = encriptarContrasena(etContrasena1.text.toString())
             bd.execSQL("insert into Usuarios(usuario, contrasena, personaje_favorito) values (?, ?, null)", arrayOf(etUsuario.text.toString(), contrasenaEncriptada))
@@ -56,7 +54,7 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     fun verificarUsuario(): Boolean {
-        val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive100", null, 1)
+        val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
         val bd = admin.writableDatabase
         val cursor = bd.rawQuery("select * from Usuarios where usuario = ?", arrayOf(etUsuario.text.toString()))
         if (cursor.moveToFirst()) {

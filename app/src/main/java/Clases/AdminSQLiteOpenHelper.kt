@@ -1,4 +1,4 @@
-package com.example.isaacsarchive
+package Clases
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -12,7 +12,7 @@ class AdminSQLiteOpenHelper(context: Context, name: String, factory: CursorFacto
         db.execSQL("create table Usuarios(id Integer primary key autoincrement, usuario text, contrasena text not null, personaje_favorito text default null)")
 
         // Tabla de enemigos
-        db.execSQL("create table Enemigos(id Integer primary key autoincrement, nombre text, tipo text not null, descripcion text, desbloqueado boolean default false)")
+        db.execSQL("create table Enemigos(id Integer primary key autoincrement, nombre text, tipo text not null, descripcion text)")
         db.execSQL("INSERT INTO Enemigos (nombre, tipo, descripcion) VALUES\n" +
                 "('Dark Maggot', 'Común', 'Enemigos que persiguen al jugador, dejando un rastro dañino.'),\n" +
                 "('Psychic Gaper', 'Común', 'Dispara lágrimas rastreadoras hacia el jugador.'),\n" +
@@ -107,7 +107,7 @@ class AdminSQLiteOpenHelper(context: Context, name: String, factory: CursorFacto
 
 
         // Tabla de objetos
-        db.execSQL("create table Objetos(id Integer primary key autoincrement, nombre text, rareza text, descripcion text, desbloqueado boolean default false)")
+        db.execSQL("create table Objetos(id Integer primary key autoincrement, nombre text, rareza text, descripcion text)")
         db.execSQL("INSERT INTO Objetos (nombre, rareza, descripcion) VALUES\n" +
                 "('Sad Onion', 'Común', 'Incrementa la velocidad de disparo.'),\n" +
                 "('The Inner Eye', 'Raro', 'Permite disparar en forma triple.'),\n" +
@@ -306,8 +306,20 @@ class AdminSQLiteOpenHelper(context: Context, name: String, factory: CursorFacto
 
         // Tabla de comentarios
         db.execSQL("create table Comentarios(id Integer primary key autoincrement, id_usuario Integer not null, id_objeto Integer default null, id_enemigo Integer default null , comentario text not null, fecha datetime default current_timestamp, foreign key(id_usuario) references Usuarios(id) on delete cascade, foreign key(id_objeto) references Objetos(id) on delete cascade, foreign key(id_enemigo) references Enemigos(id) on delete cascade)")
+        db.execSQL("INSERT INTO Comentarios (id_usuario, id_objeto, id_enemigo, comentario, fecha) \n" +
+                "VALUES \n" +
+                "(1, 1, NULL, 'Este objeto es muy útil para las batallas.', '2024-11-28 10:00:00'),\n" +
+                "(1, 2, NULL, 'Me costó mucho encontrar este objeto.', '2024-11-28 11:00:00'),\n" +
+                "(1, 3, NULL, 'No entiendo bien cómo usar este objeto.', '2024-11-28 12:00:00');")
+
+        db.execSQL("INSERT INTO Comentarios (id_usuario, id_objeto, id_enemigo, comentario, fecha) \n" +
+                "VALUES \n" +
+                "(1, NULL, 1, 'Este enemigo es muy fuerte, me derrotó varias veces.', '2024-11-28 13:00:00'),\n" +
+                "(1, NULL, 2, 'Fue fácil derrotarlo con el objeto 1.', '2024-11-28 14:00:00'),\n" +
+                "(1, NULL, 3, 'Su ataque especial es muy difícil de esquivar.', '2024-11-28 15:00:00');")
+
     }
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        // No usaremos este método
+
     }
 }

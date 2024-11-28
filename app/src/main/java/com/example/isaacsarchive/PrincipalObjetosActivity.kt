@@ -1,11 +1,12 @@
 package com.example.isaacsarchive
 
+import Clases.AdminSQLiteOpenHelper
+import Clases.Objeto
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,18 +58,17 @@ class PrincipalObjetosActivity : AppCompatActivity() {
     }
 
     fun llenarLista() {
-        val dbHelper = AdminSQLiteOpenHelper(this, "IsaacsArchive100", null, 1)
+        val dbHelper = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
         val db = dbHelper.readableDatabase
 
         try {
-            val cursor = db.rawQuery("SELECT nombre, rareza, descripcion, desbloqueado FROM Objetos", null)
+            val cursor = db.rawQuery("SELECT nombre, rareza, descripcion FROM Objetos", null)
             if (cursor.moveToFirst()) {
                 do {
                     val nombre = cursor.getString(0)
                     val rareza = cursor.getString(1)
                     val descripcion = cursor.getString(2)
-                    val desbloqueado = cursor.getString(3).toBoolean()
-                    val objeto = Objeto(nombre, rareza, descripcion, desbloqueado)
+                    val objeto = Objeto(nombre, rareza, descripcion)
                     listaObjetos.add(objeto)
                 } while (cursor.moveToNext())
             }
@@ -82,7 +82,7 @@ class PrincipalObjetosActivity : AppCompatActivity() {
 
     fun setupRecyclerView() {
         binding.rvLista.layoutManager = LinearLayoutManager(this)
-        adaptador = AdaptadorObjeto(listaObjetos)
+        adaptador = AdaptadorObjeto(listaObjetos, usuario)
         binding.rvLista.adapter = adaptador
     }
 

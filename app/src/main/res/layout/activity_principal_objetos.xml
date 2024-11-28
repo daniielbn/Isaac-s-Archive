@@ -8,6 +8,20 @@
     android:background="#81171B"
     tools:context=".PrincipalObjetosActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLista"
+        android:layout_width="361dp"
+        android:layout_height="568dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBuscador"
+        app:layout_constraintVertical_bias="0.25"
+        tools:listitem="@layout/item_lista_objeto" />
+
     <ImageView
         android:id="@+id/imgLogoPrincipal"
         android:layout_width="67dp"
@@ -73,17 +87,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoPrincipal" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvLista"
-        android:layout_width="361dp"
-        android:layout_height="568dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        tools:listitem="@layout/item_lista_objeto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etBuscador"
-        app:layout_constraintVertical_bias="0.25" />
 </androidx.constraintlayout.widget.ConstraintLayout>

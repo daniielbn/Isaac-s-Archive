@@ -38,7 +38,6 @@
             android:id="@+id/twDescripcion"
             android:layout_width="248dp"
             android:layout_height="124dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/montserrat_italic"
@@ -47,20 +46,7 @@
             android:textColor="#000000"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/cbDesbloqueado" />
-
-        <CheckBox
-            android:id="@+id/cbDesbloqueado"
-            android:layout_width="152dp"
-            android:layout_height="29dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="1dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="Desbloqueado"
-            android:textColor="#000000"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/twRareza"
@@ -70,6 +56,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_italic"
             android:text="TextView"
+            android:textColor="#FFFFFF"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/imgLogoLista" />
     </androidx.constraintlayout.widget.ConstraintLayout>

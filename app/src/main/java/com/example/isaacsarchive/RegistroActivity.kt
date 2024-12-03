@@ -1,7 +1,6 @@
 package com.example.isaacsarchive
 
 import Clases.AdminSQLiteOpenHelper
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -20,12 +19,13 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var buttonRegistar: Button
     private lateinit var buttonSalir: Button
     private lateinit var ventanaLogin: Intent
+    private lateinit var db: AdminSQLiteOpenHelper
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_registro)
+        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
 
         // Inicializamos los elementos de la vista
         etUsuario = findViewById(R.id.etUsuarioRegistrar)
@@ -38,11 +38,8 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     fun registrar(v: View?) {
-        if (comprobarUsuario() && comprobarContrasena() && verificarUsuario()) {
-            val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
-            val bd = admin.writableDatabase
-            val contrasenaEncriptada = encriptarContrasena(etContrasena1.text.toString())
-            bd.execSQL("insert into Usuarios(usuario, contrasena, personaje_favorito) values (?, ?, null)", arrayOf(etUsuario.text.toString(), contrasenaEncriptada))
+        if (comprobarUsuario() && comprobarContrasena() && db.consultarUsuario(etUsuario.text.toString()) == 0) {
+            db.insertarUsuario(this, etUsuario.text.toString(), encriptarContrasena(etContrasena1.text.toString()))
             startActivity(ventanaLogin)
             borrarCampos()
             finish()
@@ -51,18 +48,6 @@ class RegistroActivity : AppCompatActivity() {
 
     fun salir(v: View?) {
         finish()
-    }
-
-    fun verificarUsuario(): Boolean {
-        val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
-        val bd = admin.writableDatabase
-        val cursor = bd.rawQuery("select * from Usuarios where usuario = ?", arrayOf(etUsuario.text.toString()))
-        if (cursor.moveToFirst()) {
-            twError.text = "El usuario ya existe"
-            return false
-        }
-        return true
-        twError.text = ""
     }
 
     fun comprobarUsuario(): Boolean {

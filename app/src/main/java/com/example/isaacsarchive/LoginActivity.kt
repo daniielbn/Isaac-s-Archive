@@ -23,11 +23,13 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var ventanaRegistro: Intent
     private lateinit var ventanaPrincipal: Intent
     private lateinit var preferencias: SharedPreferences
+    private lateinit var db: AdminSQLiteOpenHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
+        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
 
         // Inicializamos los elementos de la vista
         etUsuario = findViewById(R.id.etUsuario)
@@ -93,13 +95,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun verificarUsuario(usuario: String, contrasena: String): Boolean {
-        if (comprobarUsuario() && comprobarContraseña()) {
-            val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
-            val bd = admin.writableDatabase
-            val cursor = bd.rawQuery("select * from Usuarios where usuario = ? and contrasena = ?", arrayOf(usuario, contrasena))
-            if (cursor.moveToFirst()) {
-                return true
-            }
+        if (comprobarUsuario() && comprobarContraseña() && db.consultarUsuario(usuario) > 0) {
+            return true
         }
         return false
     }

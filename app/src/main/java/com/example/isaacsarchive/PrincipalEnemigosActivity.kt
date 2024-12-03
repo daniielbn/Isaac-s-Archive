@@ -17,8 +17,9 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPrincipalEnemigosBinding
     private lateinit var adaptador: AdaptadorEnemigo
     private lateinit var ventanaObjetos: Intent
+    private lateinit var db: AdminSQLiteOpenHelper
 
-    var listaEnemigos = arrayListOf<Enemigo>()
+    var listaEnemigos = ArrayList<Enemigo>()
     private lateinit var twPerfil: TextView
     private lateinit var usuario: String
 
@@ -26,15 +27,15 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPrincipalEnemigosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        usuario = intent.getStringExtra("usuario").toString()
+        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+        listaEnemigos = db.obtenerEnemigos()
+        setupRecyclerView()
 
         twPerfil = findViewById(R.id.twPerfil)
-        usuario = intent.getStringExtra("usuario").toString()
+        twPerfil.text = usuario
 
         ventanaObjetos = Intent(this, PrincipalObjetosActivity::class.java)
-        establecerNombreUsuario()
-
-        llenarLista()
-        setupRecyclerView()
 
         binding.etBuscador.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -48,39 +49,11 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
             }
 
         })
-
     }
 
     fun abrirObjetos(v: View?) {
         ventanaObjetos.putExtra("usuario", usuario)
         startActivity(ventanaObjetos)
-    }
-
-    fun establecerNombreUsuario() {
-        twPerfil.setText(usuario)
-    }
-
-    fun llenarLista() {
-        val dbHelper = AdminSQLiteOpenHelper(this, "IsaacsArchive1.0", null, 1)
-        val db = dbHelper.readableDatabase
-
-        try {
-            val cursor = db.rawQuery("SELECT nombre, tipo, descripcion FROM Enemigos", null)
-            if (cursor.moveToFirst()) {
-                do {
-                    val nombre = cursor.getString(0)
-                    val tipo = cursor.getString(1)
-                    val descripcion = cursor.getString(2)
-                    val enemigo = Enemigo(nombre, tipo, descripcion)
-                    listaEnemigos.add(enemigo)
-                } while (cursor.moveToNext())
-            }
-            cursor.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            db.close()
-        }
     }
 
     fun setupRecyclerView() {
@@ -98,17 +71,4 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
         }
         adaptador.filtar(listaFiltrada)
     }
-
-//    fun actualizarDesbloqueado(v: View?) {
-//        if (v != null) {
-//            val checkBox = v.findViewById<CheckBox>(R.id.cbDesbloqueado)
-//            val nombre = v.findViewById<TextView>(R.id.twNombre).text.toString()
-//            val desbloqueado = if (checkBox.isChecked) 1 else 0
-//
-//            val admin = AdminSQLiteOpenHelper(this, "IsaacsArchive100", null, 1)
-//            val db = admin.writableDatabase
-//            db.execSQL("UPDATE Enemigos SET desbloqueado = ? WHERE nombre = ?", arrayOf(desbloqueado, nombre))
-//            db.close()
-//        }
-//    }
 }

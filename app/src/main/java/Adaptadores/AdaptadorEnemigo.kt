@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import Clases.AdminSQLiteOpenHelper
 import Clases.Enemigo
-import androidx.core.content.ContextCompat.startActivity
 import com.example.isaacsarchive.ItemEnemigoActivity
-import com.example.isaacsarchive.PrincipalObjetosActivity
 import com.example.isaacsarchive.R
 
 class AdaptadorEnemigo(
@@ -24,7 +21,6 @@ class AdaptadorEnemigo(
         val nombre = itemView.findViewById<TextView>(R.id.twUsuarioComentario)
         val img = itemView.findViewById<ImageView>(R.id.imgLogoLista)
         val descripcion = itemView.findViewById<TextView>(R.id.twDescripcion)
-        val cbDesbloqueado = itemView.findViewById<TextView>(R.id.cbDesbloqueado)
         val tipo = itemView.findViewById<TextView>(R.id.twTipo)
     }
 
@@ -42,7 +38,6 @@ class AdaptadorEnemigo(
 
         holder.nombre.text = enemigo.nombre
         holder.descripcion.text = enemigo.descripcion
-        holder.cbDesbloqueado.isSelected = enemigo.desbloqueado
         holder.tipo.text = enemigo.tipo
 
         val nombreImagen = obtenerRuta(enemigo.nombre)
@@ -55,12 +50,14 @@ class AdaptadorEnemigo(
             ventanaItemEnemigo.putExtra("enemigo", enemigo)
             holder.img.context.startActivity(ventanaItemEnemigo)
         }
-
     }
 
     fun obtenerRuta(nombre: String): String {
-        var nombreFormateado = nombre.toLowerCase().replace(" ", "_").replace("'", "").replace(".", "")
-        return nombreFormateado
+        if (nombre.lowercase().equals("gemini")) {
+            return "gemini_enemigo"
+        } else {
+            return nombre.toLowerCase().replace(" ", "_").replace("'", "").replace(".", "")
+        }
     }
 
     fun filtar(listaFiltrada: ArrayList<Enemigo>) {

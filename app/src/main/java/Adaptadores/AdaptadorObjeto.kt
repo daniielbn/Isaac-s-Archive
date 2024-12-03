@@ -5,7 +5,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +20,8 @@ class AdaptadorObjeto(
         val img = itemView.findViewById<ImageView>(R.id.imgLogoLista)
         val rareza = itemView.findViewById<TextView>(R.id.twRareza)
         val descripcion = itemView.findViewById<TextView>(R.id.twDescripcion)
-        val cbDesbloqueado = itemView.findViewById<CheckBox>(R.id.cbDesbloqueado)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderObjeto {
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_lista_objeto, parent, false)
         return ViewHolderObjeto(vista)
@@ -34,19 +33,17 @@ class AdaptadorObjeto(
         holder.nombre.text = objeto.nombre
         holder.rareza.text = objeto.rareza
         holder.descripcion.text = objeto.descripcion
-        holder.cbDesbloqueado.isChecked = objeto.desbloqueado
 
         val nombreImagen = obtenerRuta(objeto.nombre)
-        val idImagen = holder.img.context.resources.getIdentifier(nombreImagen, "drawable", holder.img.context.packageName)
+        val idImagen = holder.itemView.context.resources.getIdentifier(nombreImagen, "drawable", holder.img.context.packageName)
         holder.img.setImageResource(idImagen)
 
-        holder.img.setOnClickListener(View.OnClickListener {
+        holder.img.setOnClickListener {
             ventanaObjeto = Intent(holder.img.context, ItemObjetoActivity::class.java)
             ventanaObjeto.putExtra("usuario", usuario)
             ventanaObjeto.putExtra("objeto", objeto)
             holder.img.context.startActivity(ventanaObjeto)
-        })
-
+        }
     }
 
     override fun getItemCount(): Int {
@@ -54,10 +51,11 @@ class AdaptadorObjeto(
     }
 
     fun obtenerRuta(nombre: String): String {
-        var nombreMinusculas = nombre.lowercase()
-        var nombreSeparado = nombreMinusculas.replace(" ", "_")
-        var nombreFinal = nombreSeparado.replace("'", "")
-        return nombreFinal
+        if (nombre.lowercase().equals("gemini")) {
+            return "gemini_objeto"
+        } else {
+            return nombre.lowercase().replace(" ", "_").replace("'", "").replace(".", "").replace("-", "_")
+        }
     }
 
     fun filtar(listaFiltrada: ArrayList<Objeto>) {

@@ -33,17 +33,24 @@ class LoginActivity : AppCompatActivity() {
 
         // Inicializamos los elementos de la vista
         etUsuario = findViewById(R.id.etUsuario)
+        etUsuario.contentDescription = "Nombre de usuario"
         etContrasenia = findViewById(R.id.etContrasena)
+        etContrasenia.contentDescription = "Contraseña"
         twError = findViewById(R.id.twErrorInicio)
+        twError.contentDescription = "Error"
         cbRecordar = findViewById(R.id.cbRecordar)
+        cbRecordar.contentDescription = "Recordar contraseña"
         buttonIniciar = findViewById(R.id.buttonIniciar)
+        buttonIniciar.contentDescription = "Iniciar sesión"
         buttonRegistrar = findViewById(R.id.buttonRegistrarme)
+        buttonRegistrar.contentDescription = "Registrarme"
+
         ventanaPrincipal = Intent(this, PrincipalObjetosActivity::class.java)
         ventanaRegistro = Intent(this, RegistroActivity::class.java)
+
         preferencias = getSharedPreferences("preferencias_usuario", MODE_PRIVATE)
 
         comprobarRecordarContrasena()
-
     }
 
     fun iniciarSesion(v: View?) {

@@ -56,14 +56,23 @@ class ItemObjetoActivity : AppCompatActivity() {
 
 
         twPerfil = findViewById(R.id.twPerfil)
+        twPerfil.contentDescription = "Nombre de perfil del usuario"
         twTitulo = findViewById(R.id.twTituloObjeto)
+        twTitulo.contentDescription = "Nombre del objeto"
         twDescripcion = findViewById(R.id.twDescripcionObjeto)
+        twDescripcion.contentDescription = "Descripción del objeto"
         twTipo = findViewById(R.id.twTipoObjeto)
+        twTipo.contentDescription = "Tipo de objeto"
         cbDesbloqueado = findViewById(R.id.cbDesbloqueadoObjeto)
+        cbDesbloqueado.contentDescription = "Checkbox de desbloqueo de objeto"
         imgObjeto = findViewById(R.id.imgObjeto)
+        imgObjeto.contentDescription = "Imagen del objeto"
         imgVolver = findViewById(R.id.imgVolver)
+        imgVolver.contentDescription = "Botón para volver a la pantalla anterior"
         etComentario = findViewById(R.id.etComentario)
+        etComentario.contentDescription = "Campo de texto para agregar comentario"
         buttonComentar = findViewById(R.id.buttonComentario)
+        buttonComentar.contentDescription = "Botón para agregar comentario"
 
         twPerfil.text = usuario
         llenarObjeto()

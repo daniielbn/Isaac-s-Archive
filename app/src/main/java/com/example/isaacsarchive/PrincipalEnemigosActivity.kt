@@ -34,6 +34,7 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
         setupRecyclerView()
 
         twPerfil = findViewById(R.id.twPerfil)
+        twPerfil.contentDescription = "Nombre de perfil de usuario"
         twPerfil.text = usuario
 
         ventanaObjetos = Intent(this, PrincipalObjetosActivity::class.java)

@@ -54,14 +54,23 @@ class ItemEnemigoActivity : AppCompatActivity() {
         setupRecyclerView()
 
         twPerfil = findViewById(R.id.twPerfil)
+        twPerfil.contentDescription = "Nombre de perfil del usuario"
         twTitulo = findViewById(R.id.twTituloEnemigo)
+        twTitulo.contentDescription = "Nombre del enemigo"
         twDescripcion = findViewById(R.id.twDescripcionEnemigo)
+        twDescripcion.contentDescription = "Descripción del enemigo"
         twTipo = findViewById(R.id.twTipoEnemigo)
+        twTipo.contentDescription = "Tipo de enemigo"
         cbDesbloqueado = findViewById(R.id.cbDesbloqueadoEnemigo)
+        cbDesbloqueado.contentDescription = "Checkbox para desbloquear enemigo"
         imgEnemigo = findViewById(R.id.imgEnemigo)
+        imgEnemigo.contentDescription = "Imagen del enemigo"
         imgVolver = findViewById(R.id.imgVolver)
+        imgVolver.contentDescription = "Botón para volver a la pantalla anterior"
         etComentario = findViewById(R.id.etComentario)
+        etComentario.contentDescription = "Campo de texto para agregar comentario"
         buttonComentar = findViewById(R.id.buttonComentario)
+        buttonComentar.contentDescription = "Botón para agregar comentario"
 
         twPerfil.text = usuario
         llenarEnemigo()

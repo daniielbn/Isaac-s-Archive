@@ -29,11 +29,17 @@ class RegistroActivity : AppCompatActivity() {
 
         // Inicializamos los elementos de la vista
         etUsuario = findViewById(R.id.etUsuarioRegistrar)
+        etUsuario.contentDescription = "Campo de texto para introducir el nombre de usuario"
         etContrasena1 = findViewById(R.id.etContrasena1)
+        etContrasena1.contentDescription = "Campo de texto para introducir la contraseña"
         etContrasena2 = findViewById(R.id.etContrasena2)
+        etContrasena2.contentDescription = "Campo de texto para confirmar la contraseña"
         twError = findViewById(R.id.twError)
+        twError.contentDescription = "Mensaje de error"
         buttonRegistar = findViewById(R.id.buttonRegistrar)
+        buttonRegistar.contentDescription = "Botón para registrar un nuevo usuario"
         buttonSalir = findViewById(R.id.buttonSalir)
+        buttonSalir.contentDescription = "Botón para salir de la ventana de registro"
         ventanaLogin = Intent(this, LoginActivity::class.java)
     }
 

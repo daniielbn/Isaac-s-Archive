@@ -397,11 +397,28 @@ class AdminSQLiteOpenHelper(
         return db.delete("Usuarios", clausulaWhere, argumentos) > 0
     }
 
-    fun eliminarDesbloqueoEnemigo(enemigo: Enemigo, usuario: String): Boolean {
+    fun eliminarDesbloqueosObjetoUsuario(usuario: String): Boolean {
         val db = this.writableDatabase
         val valores = ContentValues().apply {
-            put("desbloqueado", enemigo.desbloqueado)
+            put("desbloqueado", 0)
         }
+        val clausulaWhere = "id_usuario = ?"
+        val argumentos = arrayOf(consultarUsuario(usuario).toString())
+        return db.update("Usuarios_Objetos", valores, clausulaWhere, argumentos) > 0
+    }
+
+    fun eliminarDesbloqueosEnemigoUsuario(usuario: String): Boolean {
+        val db = this.writableDatabase
+        val valores = ContentValues().apply {
+            put("desbloqueado", 0)
+        }
+        val clausulaWhere = "id_usuario = ?"
+        val argumentos = arrayOf(consultarUsuario(usuario).toString())
+        return db.update("Usuarios_Enemigos", valores, clausulaWhere, argumentos) > 0
+    }
+
+    fun eliminarDesbloqueoEnemigo(enemigo: Enemigo, usuario: String): Boolean {
+        val db = this.writableDatabase
         val clausulaWhere = "id_usuario = ? AND id_enemigo = ?"
         val argumentos = arrayOf(consultarUsuario(usuario).toString(), consultarEnemigo(enemigo.nombre).toString())
         return db.delete("Usuarios_Enemigos", clausulaWhere, argumentos) > 0
@@ -409,9 +426,6 @@ class AdminSQLiteOpenHelper(
 
     fun eliminarDesbloqueoObjeto(objeto: Objeto, usuario: String): Boolean {
         val db = this.writableDatabase
-        val valores = ContentValues().apply {
-            put("desbloqueado", objeto.desbloqueado)
-        }
         val clausulaWhere = "id_usuario = ? AND id_objeto = ?"
         val argumentos = arrayOf(consultarUsuario(usuario).toString(), consultarObjeto(objeto.nombre).toString())
         return db.delete("Usuarios_Objetos", clausulaWhere, argumentos) > 0
@@ -517,6 +531,50 @@ class AdminSQLiteOpenHelper(
             objetos.add(objeto)
         }
         return objetos
+    }
+
+    fun obtenerNumeroObjetos(): Int {
+        val db = this.writableDatabase
+        val SQLQuery = "SELECT COUNT(*) FROM Objetos"
+        val cursor = db.rawQuery(SQLQuery, null)
+        return if (cursor.moveToFirst()) {
+            cursor.getInt(0)
+        } else {
+            0
+        }
+    }
+
+    fun obtenerNumeroObjetosUsuario(): Int {
+        val db = this.writableDatabase
+        val SQLQuery = "SELECT COUNT(*) FROM Usuarios_Objetos WHERE desbloqueado = 1"
+        val cursor = db.rawQuery(SQLQuery, null)
+        return if (cursor.moveToFirst()) {
+            cursor.getInt(0)
+        } else {
+            0
+        }
+    }
+
+    fun obtenerNumeroEnemigos(): Int {
+        val db = this.writableDatabase
+        val SQLQuery = "SELECT COUNT(*) FROM Enemigos"
+        val cursor = db.rawQuery(SQLQuery, null)
+        return if (cursor.moveToFirst()) {
+            cursor.getInt(0)
+        } else {
+            0
+        }
+    }
+
+    fun obtenerNumeroEnemigosUsuario(): Int {
+        val db = this.writableDatabase
+        val SQLQuery = "SELECT COUNT(*) FROM Usuarios_Enemigos WHERE desbloqueado = 1"
+        val cursor = db.rawQuery(SQLQuery, null)
+        return if (cursor.moveToFirst()) {
+            cursor.getInt(0)
+        } else {
+            0
+        }
     }
 
     fun anadirComentarioEnemigo(comentario: Comentario): Boolean {

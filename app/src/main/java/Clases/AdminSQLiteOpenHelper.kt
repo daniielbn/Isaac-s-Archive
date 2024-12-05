@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteDatabase.CursorFactory
 import android.database.sqlite.SQLiteOpenHelper
+import java.security.MessageDigest
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -245,6 +246,28 @@ class AdminSQLiteOpenHelper(
         }
     }
 
+    fun consultarContrasena(usuario: String): String {
+        val db = this.writableDatabase
+        val SQLQuery = "SELECT contrasena FROM Usuarios WHERE usuario = ?"
+        val cursor = db.rawQuery(SQLQuery, arrayOf(usuario))
+        return if (cursor.moveToFirst()) {
+            cursor.getString(0)
+        } else {
+            ""
+        }
+    }
+
+    fun consultarPersonaje(usuario: String): String {
+        val db = this.writableDatabase
+        val SQLQuery = "SELECT personaje_favorito FROM Usuarios WHERE usuario = ?"
+        val cursor = db.rawQuery(SQLQuery, arrayOf(usuario))
+        return if (cursor.moveToFirst()) {
+            cursor.getString(0)
+        } else {
+            ""
+        }
+    }
+
     fun consultarObjeto(objeto: String): Int {
         val db = this.writableDatabase
         val SQLQuery = "SELECT * FROM Objetos WHERE nombre = ?"
@@ -332,6 +355,46 @@ class AdminSQLiteOpenHelper(
         val argumentos = arrayOf(consultarUsuario(usuario).toString(), consultarObjeto(objeto.nombre).toString())
         val cantidad = db.update("Usuarios_Objetos", valores, clausulaWhere, argumentos)
         return cantidad > 0
+    }
+
+    fun actualizarUsuario(usuario: String, nuevoUsuario: String): Boolean {
+        val db = this.writableDatabase
+        val valores = ContentValues().apply {
+            put("usuario", nuevoUsuario)
+        }
+        val clausulaWhere = "usuario = ?"
+        val argumentos = arrayOf(usuario)
+        val cantidad = db.update("Usuarios", valores, clausulaWhere, argumentos)
+        return cantidad > 0
+    }
+
+    fun actualizarContrasena(usuario: String, contrasena: String): Boolean {
+        val db = this.writableDatabase
+        val valores = ContentValues().apply {
+            put("contrasena", encriptarContrasena(contrasena))
+        }
+        val clausulaWhere = "usuario = ?"
+        val argumentos = arrayOf(usuario)
+        val cantidad = db.update("Usuarios", valores, clausulaWhere, argumentos)
+        return cantidad > 0
+    }
+
+    fun actualizarPersonaje(usuario: String, personaje: String): Boolean {
+        val db = this.writableDatabase
+        val valores = ContentValues().apply {
+            put("personaje_favorito", personaje)
+        }
+        val clausulaWhere = "usuario = ?"
+        val argumentos = arrayOf(usuario)
+        val cantidad = db.update("Usuarios", valores, clausulaWhere, argumentos)
+        return cantidad > 0
+    }
+
+    fun eliminarUsuario(usuario: String): Boolean {
+        val db = this.writableDatabase
+        val clausulaWhere = "usuario = ?"
+        val argumentos = arrayOf(usuario)
+        return db.delete("Usuarios", clausulaWhere, argumentos) > 0
     }
 
     fun eliminarDesbloqueoEnemigo(enemigo: Enemigo, usuario: String): Boolean {
@@ -481,5 +544,11 @@ class AdminSQLiteOpenHelper(
     private fun getFechaActual(): String {
         val formato =  DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
         return LocalDateTime.now().format(formato)
+    }
+
+    fun encriptarContrasena(contrasena: String): String {
+        val digest = MessageDigest.getInstance("SHA-256")
+        val hashBytes = digest.digest(contrasena.toByteArray(Charsets.UTF_8))
+        return hashBytes.joinToString("") { "%02x".format(it) }
     }
 }

@@ -5,6 +5,307 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#81171B"
     tools:context=".PerfilActivity">
+
+    <ImageView
+        android:id="@+id/imgLogoPrincipalPerfil"
+        android:layout_width="67dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:onClick="abrirInicio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/twPerfilInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="26dp"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="admin"
+        android:textColor="#F2F3AE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="125dp"
+        android:layout_height="1000dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="1dp"
+        android:background="#EA8C55"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogoPrincipalPerfil">
+
+        <TextView
+            android:id="@+id/twConfiguracion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Configuración"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/twProgreso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="31dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:onClick="abrirProgreso"
+            android:text="Progreso"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twConfiguracion" />
+
+        <TextView
+            android:id="@+id/twAccesibilidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:onClick="abrirAccesibilidad"
+            android:text="Accesibilidad"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twProgreso" />
+
+        <TextView
+            android:id="@+id/twAyuda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="29dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:onClick="abrirAyuda"
+            android:text="Ayuda"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twAccesibilidad" />
+
+        <TextView
+            android:id="@+id/twCerrarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:onClick="cerrarSesion"
+            android:text="Cerrar sesión"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twAyuda" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="285dp"
+        android:layout_height="1000dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="32dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/twPerfilInicio">
+
+        <TextView
+            android:id="@+id/twConfiguracion2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="53dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="54dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Configuración"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/twUsuarioConf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Usuario"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twConfiguracion2" />
+
+        <TextView
+            android:id="@+id/twContrasenaConf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="99dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Contraseña"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etUsuarioConf" />
+
+        <TextView
+            android:id="@+id/twPersonajeFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="62dp"
+            android:layout_marginEnd="79dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Personaje favorito"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonActualizarContrasena" />
+
+        <TextView
+            android:id="@+id/twContrasenaConf2"
+            android:layout_width="84dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Repetir contraseña"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twContrasenaConf" />
+
+        <EditText
+            android:id="@+id/etUsuarioConf"
+            android:layout_width="196dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#ffffff"
+            android:ems="10"
+            android:hint="usuario"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twConfiguracion2" />
+
+        <Button
+            android:id="@+id/buttonActualizarUsuario"
+            android:layout_width="113dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#AD2E24"
+            android:onClick="cambiarUsuario"
+            android:text="Actualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etUsuarioConf" />
+
+        <Button
+            android:id="@+id/buttonActualizarContrasena"
+            android:layout_width="113dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#AD2E24"
+            android:onClick="cambiarContrasena"
+            android:text="Actualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCambiarContrasena2" />
+
+        <Button
+            android:id="@+id/buttonActualizarPersonaje"
+            android:layout_width="113dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#AD2E24"
+            android:onClick="cambiarPersonaje"
+            android:text="Actualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPersonajes" />
+
+        <Button
+            android:id="@+id/buttonEliminarCuenta"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="43dp"
+            android:layout_marginBottom="384dp"
+            android:backgroundTint="#AD2E24"
+            android:onClick="eliminarCuenta"
+            android:text="Eliminar cuenta"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPersonajes" />
+
+        <Spinner
+            android:id="@+id/spinnerPersonajes"
+            android:layout_width="225dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:background="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twPersonajeFav" />
+
+        <EditText
+            android:id="@+id/etCambiarContrasena1"
+            android:layout_width="176dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="9dp"
+            android:backgroundTint="#ffffff"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/twContrasenaConf"
+            app:layout_constraintTop_toBottomOf="@+id/buttonActualizarUsuario" />
+
+        <EditText
+            android:id="@+id/etCambiarContrasena2"
+            android:layout_width="176dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="9dp"
+            android:backgroundTint="#ffffff"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/twContrasenaConf"
+            app:layout_constraintTop_toBottomOf="@+id/etCambiarContrasena1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

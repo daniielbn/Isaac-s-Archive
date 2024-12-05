@@ -17,6 +17,7 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPrincipalEnemigosBinding
     private lateinit var adaptador: AdaptadorEnemigo
     private lateinit var ventanaObjetos: Intent
+    private lateinit var ventanaPerfil: Intent
     private lateinit var db: AdminSQLiteOpenHelper
 
     var listaEnemigos = ArrayList<Enemigo>()
@@ -36,6 +37,7 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
         twPerfil.text = usuario
 
         ventanaObjetos = Intent(this, PrincipalObjetosActivity::class.java)
+        ventanaPerfil = Intent(this, PerfilActivity::class.java)
 
         binding.etBuscador.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -54,6 +56,11 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
     fun abrirObjetos(v: View?) {
         ventanaObjetos.putExtra("usuario", usuario)
         startActivity(ventanaObjetos)
+    }
+
+    fun abrirPerfil(v: View?) {
+        ventanaPerfil.putExtra("usuario", usuario)
+        startActivity(ventanaPerfil)
     }
 
     fun setupRecyclerView() {

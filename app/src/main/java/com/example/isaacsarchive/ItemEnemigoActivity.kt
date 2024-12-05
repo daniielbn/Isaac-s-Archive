@@ -25,9 +25,10 @@ class ItemEnemigoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityItemEnemigoBinding
     private lateinit var adaptadorComentario: AdaptadorComentario
     private lateinit var ventanaObjeto: Intent
+    private lateinit var ventanaPerfil: Intent
     private lateinit var db: AdminSQLiteOpenHelper
 
-    private lateinit var twUsuario: TextView
+    private lateinit var twPerfil: TextView
     private lateinit var twTitulo: TextView
     private lateinit var twDescripcion: TextView
     private lateinit var twTipo: TextView
@@ -52,7 +53,7 @@ class ItemEnemigoActivity : AppCompatActivity() {
         adaptadorComentario = AdaptadorComentario(listaComentarios, usuario)
         setupRecyclerView()
 
-        twUsuario = findViewById(R.id.twPerfil)
+        twPerfil = findViewById(R.id.twPerfil)
         twTitulo = findViewById(R.id.twTituloEnemigo)
         twDescripcion = findViewById(R.id.twDescripcionEnemigo)
         twTipo = findViewById(R.id.twTipoEnemigo)
@@ -62,10 +63,11 @@ class ItemEnemigoActivity : AppCompatActivity() {
         etComentario = findViewById(R.id.etComentario)
         buttonComentar = findViewById(R.id.buttonComentario)
 
-        twUsuario.text = usuario
+        twPerfil.text = usuario
         llenarEnemigo()
 
         ventanaObjeto = Intent(this, PrincipalObjetosActivity::class.java)
+        ventanaPerfil = Intent(this, PerfilActivity::class.java)
 
         cbDesbloqueado.isChecked = db.comprobarDesbloqueoEnemigo(enemigo, usuario)
         cbDesbloqueado.setOnCheckedChangeListener() { buttonView, isChecked ->
@@ -82,6 +84,11 @@ class ItemEnemigoActivity : AppCompatActivity() {
     fun abrirObjetos(v: View?) {
         ventanaObjeto.putExtra("usuario", usuario)
         startActivity(ventanaObjeto)
+    }
+
+    fun abrirPerfil(v: View?) {
+        ventanaPerfil.putExtra("usuario", usuario)
+        startActivity(ventanaPerfil)
     }
 
     fun volver(v: View?) {

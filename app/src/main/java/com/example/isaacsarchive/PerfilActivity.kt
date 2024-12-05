@@ -58,23 +58,37 @@ class PerfilActivity : AppCompatActivity() {
         usuario = intent.getStringExtra("usuario").toString()
 
         twPerfil = findViewById(R.id.twPerfilInicio)
+        twPerfil.contentDescription = "Nombre de perfil de usuario"
         imgLogo = findViewById(R.id.imgLogoPrincipalPerfil)
+        imgLogo.contentDescription = "Logo de Isaac's Archive"
         twPerfil.text = usuario
 
         twProgreso = findViewById(R.id.twProgreso)
+        twProgreso.contentDescription = "Botón para acceder al perfil de progreso"
         twAccesbilidad = findViewById(R.id.twAccesibilidad)
+        twAccesbilidad.contentDescription = "Botón para acceder al perfil de accesibilidad"
         twAyuda = findViewById(R.id.twAyuda)
+        twAyuda.contentDescription = "Botón para acceder al perfil de ayuda"
         twCerrarSesion = findViewById(R.id.twCerrarSesion)
+        twCerrarSesion.contentDescription = "Botón para cerrar sesión"
 
         etUsuario = findViewById(R.id.etUsuarioConf)
+        etUsuario.contentDescription = "Campo de texto para introducir el nuevo usuario"
         etContrasena1 = findViewById(R.id.etCambiarContrasena1)
+        etContrasena1.contentDescription = "Campo de texto para introducir la nueva contraseña"
         etContrasena2 = findViewById(R.id.etCambiarContrasena2)
+        etContrasena2.contentDescription = "Campo de texto para repetir la nueva contraseña"
         spinner = findViewById(R.id.spinnerPersonajes)
+        spinner.contentDescription = "Selector de personajes"
 
         buttonUsuario = findViewById(R.id.buttonActualizarUsuario)
+        buttonUsuario.contentDescription = "Botón para actualizar el usuario"
         buttonContrasena = findViewById(R.id.buttonActualizarContrasena)
+        buttonContrasena.contentDescription = "Botón para actualizar la contraseña"
         buttonPersonaje = findViewById(R.id.buttonActualizarPersonaje)
+        buttonPersonaje.contentDescription = "Botón para actualizar el personaje"
         buttonEliminarCuenta = findViewById(R.id.buttonEliminarCuenta)
+        buttonEliminarCuenta.contentDescription = "Botón para eliminar la cuenta"
 
         val items = listOf("Isaac", "Magdalene", "Cain", "Judas", "???", "Eve", "Samsom", "Azazel", "Lazarus", "Eden", "The Lost", "Lilith", "Keeper", "Apollyon", "The Forgotten", "Bethany", "Jacob & Esau")
         val adaptadorSpinner = AdaptadorSpinner(this, items)
@@ -87,6 +101,7 @@ class PerfilActivity : AppCompatActivity() {
         ventanaProgreso = Intent(this, PerfilProgresoActivity::class.java)
         ventanaAccesibilidad = Intent(this, PerfilAccesibilidadActivity::class.java)
         ventanaAyuda = Intent(this, PerfilAyudaActivity::class.java)
+
         val personajeUsuario = db.consultarPersonaje(usuario)
         if (!personajeUsuario.equals("")) {
             spinner.setSelection(items.indexOf(personajeUsuario))
@@ -96,21 +111,25 @@ class PerfilActivity : AppCompatActivity() {
     fun abrirInicio(v: View?) {
         ventanaInicio.putExtra("usuario", usuario)
         startActivity(ventanaInicio)
+        finish()
     }
 
     fun abrirProgreso(v: View?) {
         ventanaProgreso.putExtra("usuario", usuario)
         startActivity(ventanaProgreso)
+        finish()
     }
 
     fun abrirAccesibilidad(v: View?) {
         ventanaAccesibilidad.putExtra("usuario", usuario)
         startActivity(ventanaAccesibilidad)
+        finish()
     }
 
     fun abrirAyuda(v: View?) {
         ventanaAyuda.putExtra("usuario", usuario)
         startActivity(ventanaAyuda)
+        finish()
     }
 
     fun cambiarUsuario(v: View?) {
@@ -160,6 +179,7 @@ class PerfilActivity : AppCompatActivity() {
         preferencias.edit().putBoolean("recordar", false).apply()
         preferencias.edit().putString("usuario", "").apply()
         startActivity(ventanaLogin)
+        finish()
     }
 
     fun comprobarCampoUsuario(): Boolean {

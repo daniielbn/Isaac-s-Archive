@@ -47,7 +47,7 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var ventanaAccesibilidad: Intent
     private lateinit var ventanaAyuda: Intent
 
-    private val db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+    private val db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
 
 
     @SuppressLint("MissingInflatedId")
@@ -103,8 +103,10 @@ class PerfilActivity : AppCompatActivity() {
         ventanaAyuda = Intent(this, PerfilAyudaActivity::class.java)
 
         val personajeUsuario = db.consultarPersonaje(usuario)
-        if (!personajeUsuario.equals("")) {
+        if (personajeUsuario != null) {
             spinner.setSelection(items.indexOf(personajeUsuario))
+        } else {
+            spinner.setSelection(0)
         }
     }
 

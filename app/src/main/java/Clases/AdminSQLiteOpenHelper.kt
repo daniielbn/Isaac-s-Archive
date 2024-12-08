@@ -237,7 +237,7 @@ class AdminSQLiteOpenHelper(
 
     fun consultarUsuario(usuario: String): Int {
         val db = this.writableDatabase
-        val SQLQuery = "SELECT * FROM Usuarios WHERE usuario = ?"
+        val SQLQuery = "SELECT id FROM Usuarios WHERE usuario = ?"
         val cursor = db.rawQuery(SQLQuery, arrayOf(usuario))
         return if (cursor.moveToFirst()) {
             cursor.getInt(0)
@@ -257,20 +257,20 @@ class AdminSQLiteOpenHelper(
         }
     }
 
-    fun consultarPersonaje(usuario: String): String {
+    fun consultarPersonaje(usuario: String): String? {
         val db = this.writableDatabase
         val SQLQuery = "SELECT personaje_favorito FROM Usuarios WHERE usuario = ?"
         val cursor = db.rawQuery(SQLQuery, arrayOf(usuario))
         return if (cursor.moveToFirst()) {
             cursor.getString(0)
         } else {
-            ""
+            null
         }
     }
 
     fun consultarObjeto(objeto: String): Int {
         val db = this.writableDatabase
-        val SQLQuery = "SELECT * FROM Objetos WHERE nombre = ?"
+        val SQLQuery = "SELECT id FROM Objetos WHERE nombre = ?"
         val cursor = db.rawQuery(SQLQuery, arrayOf(objeto))
         return if (cursor.moveToFirst()) {
             cursor.getInt(0)
@@ -281,7 +281,7 @@ class AdminSQLiteOpenHelper(
 
     fun consultarEnemigo(enemigo: String): Int {
         val db = this.writableDatabase
-        val SQLQuery = "SELECT * FROM Enemigos WHERE nombre = ?"
+        val SQLQuery = "SELECT id FROM Enemigos WHERE nombre = ?"
         val cursor = db.rawQuery(SQLQuery, arrayOf(enemigo))
         return if (cursor.moveToFirst()) {
             cursor.getInt(0)
@@ -301,7 +301,18 @@ class AdminSQLiteOpenHelper(
         }
     }
 
-    fun insertarUsuario(context: Context, usuario: String, contrasena: String): Boolean {
+    fun consultarIdComentario(comentario: Comentario): Int {
+        val db = this.writableDatabase
+        val SQLQuery = "SELECT id FROM Comentarios WHERE id_usuario = ? AND comentario = ? AND fecha = ?"
+        val cursor = db.rawQuery(SQLQuery, arrayOf(comentario.id_usuario.toString(), comentario.comentario, comentario.fecha))
+        return if (cursor.moveToFirst()) {
+            cursor.getInt(0)
+        } else {
+            0
+        }
+    }
+
+    fun insertarUsuario(usuario: String, contrasena: String): Boolean {
         val db = this.writableDatabase
         if (consultarUsuario(usuario) > 0) {
             return false
@@ -417,24 +428,10 @@ class AdminSQLiteOpenHelper(
         return db.update("Usuarios_Enemigos", valores, clausulaWhere, argumentos) > 0
     }
 
-    fun eliminarDesbloqueoEnemigo(enemigo: Enemigo, usuario: String): Boolean {
-        val db = this.writableDatabase
-        val clausulaWhere = "id_usuario = ? AND id_enemigo = ?"
-        val argumentos = arrayOf(consultarUsuario(usuario).toString(), consultarEnemigo(enemigo.nombre).toString())
-        return db.delete("Usuarios_Enemigos", clausulaWhere, argumentos) > 0
-    }
-
-    fun eliminarDesbloqueoObjeto(objeto: Objeto, usuario: String): Boolean {
-        val db = this.writableDatabase
-        val clausulaWhere = "id_usuario = ? AND id_objeto = ?"
-        val argumentos = arrayOf(consultarUsuario(usuario).toString(), consultarObjeto(objeto.nombre).toString())
-        return db.delete("Usuarios_Objetos", clausulaWhere, argumentos) > 0
-    }
-
     fun eliminarComentario(comentario: Comentario): Boolean {
         val db = this.writableDatabase
-        val clausulaWhere = "id_usuario = ? AND id_objeto = ? AND id_enemigo = ? AND comentario = ?"
-        val argumentos = arrayOf(comentario.id_usuario.toString(), comentario.id_objeto.toString(), comentario.id_enemigo.toString(), comentario.comentario)
+        val clausulaWhere = "id = ?"
+        val argumentos = arrayOf(consultarIdComentario(comentario).toString())
         val filas = db.delete("Comentarios", clausulaWhere, argumentos)
         return filas > 0
     }
@@ -503,7 +500,7 @@ class AdminSQLiteOpenHelper(
 
     fun obtenerEnemigos(): ArrayList<Enemigo> {
         val db = this.writableDatabase
-        val SQLQuery = "SELECT * FROM Enemigos"
+        var SQLQuery = "SELECT * FROM Enemigos"
         val cursor = db.rawQuery(SQLQuery, null)
         val enemigos = ArrayList<Enemigo>()
         while (cursor.moveToNext()) {
@@ -519,7 +516,7 @@ class AdminSQLiteOpenHelper(
 
     fun obtenerObjetos(): ArrayList<Objeto> {
         val db = this.writableDatabase
-        val SQLQuery = "SELECT * FROM Objetos"
+        var SQLQuery = "SELECT * FROM Objetos"
         val cursor = db.rawQuery(SQLQuery, null)
         val objetos = ArrayList<Objeto>()
         while (cursor.moveToNext()) {

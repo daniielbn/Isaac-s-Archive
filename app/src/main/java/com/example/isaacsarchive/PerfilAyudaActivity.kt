@@ -1,6 +1,8 @@
 package com.example.isaacsarchive
 
+import Adaptadores.AdaptadorTextoAyuda
 import Clases.AdminSQLiteOpenHelper
+import Clases.TextoAyuda
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
@@ -11,8 +13,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.isaacsarchive.databinding.ActivityPerfilAyudaBinding
 
 class PerfilAyudaActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityPerfilAyudaBinding
+    private lateinit var adaptador: AdaptadorTextoAyuda
+    var listaTextosAyuda = ArrayList<TextoAyuda>()
+
     private lateinit var usuario: String
     private lateinit var twPerfil: TextView
 
@@ -29,12 +37,16 @@ class PerfilAyudaActivity : AppCompatActivity() {
 
     private lateinit var preferencias: SharedPreferences
 
-    private val db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+    private val db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityPerfilAyudaBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_perfil_ayuda)
+        setContentView(binding.root)
+
+        listaTextosAyuda = obtenerTextos()
+        setupRecyclerView()
 
         usuario = intent.getStringExtra("usuario").toString()
         twPerfil = findViewById(R.id.twPerfilAyuda)
@@ -89,4 +101,22 @@ class PerfilAyudaActivity : AppCompatActivity() {
         finish()
     }
 
+    fun setupRecyclerView() {
+        binding.rvListaTextosAyuda.layoutManager = LinearLayoutManager(this)
+        adaptador = AdaptadorTextoAyuda(listaTextosAyuda)
+        binding.rvListaTextosAyuda.adapter = adaptador
+    }
+
+    private fun obtenerTextos(): ArrayList<TextoAyuda> {
+        val lista = ArrayList<TextoAyuda>()
+        lista.add(TextoAyuda("¿Qué es Isaacs Archive?", "Isaacs Archive es una aplicación que te permite llevar un registro de los objetos y enemigos que has desbloqueado en el videojuego The Binding of Isaac: Rebirth."))
+        lista.add(TextoAyuda("¿Cómo puedo desbloquear objetos y enemigos?", "Para desbloquear objetos y enemigos en The Binding of Isaac: Rebirth, debes cumplir ciertos requisitos en el juego. Por ejemplo, para desbloquear el objeto 'Mom's Knife', debes vencer a Mom por primera vez."))
+        lista.add(TextoAyuda("¿Cómo puedo añadir objetos y enemigos a mi perfil?", "Para añadir objetos y enemigos a tu perfil, debes buscarlos en la lista de objetos y enemigos y pulsar sobre ellos."))
+        lista.add(TextoAyuda("¿Cómo puedo eliminar objetos y enemigos de mi perfil?", "Para eliminar objetos y enemigos de tu perfil, debes buscarlos en la lista de objetos y enemigos y pulsar sobre ellos."))
+        lista.add(TextoAyuda("¿Cómo puedo buscar objetos y enemigos en la lista?", "Para buscar objetos y enemigos en la lista, debes escribir el nombre del objeto o enemigo en el campo de búsqueda y pulsar sobre el botón de buscar."))
+        lista.add(TextoAyuda("¿Cómo puedo ver mi progreso en el juego?", "Para ver tu progreso en el juego, debes pulsar sobre el botón de progreso en la pantalla principal."))
+        lista.add(TextoAyuda("¿Cómo puedo cambiar la configuración de mi perfil?", "Para cambiar la configuración de tu perfil, debes pulsar sobre el botón de configuración en la pantalla principal."))
+        lista.add(TextoAyuda("¿Cómo puedo cerrar sesión en la aplicación?", "Para cerrar sesión en la aplicación, debes pulsar sobre el botón de cerrar sesión en la pantalla principal."))
+        return lista
+    }
 }

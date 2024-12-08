@@ -8,405 +8,6 @@
     android:background="#81171B"
     tools:context=".PerfilAyudaActivity">
 
-    <ScrollView
-        android:id="@+id/sv"
-        android:layout_width="286dp"
-        android:layout_height="820dp"
-        android:layout_marginTop="33dp"
-        android:background="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/twPerfilAyuda">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/twInicioAyuda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="212dp"
-                android:fontFamily="@font/montserrat_italic"
-                android:onClick="abrirConfiguracion"
-                android:text="INICIO"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-            <TextView
-                android:id="@+id/twObjetosAyuda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/montserrat_italic"
-                android:onClick="abrirConfiguracion"
-                android:text="OBJETOS"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-            <TextView
-                android:id="@+id/twTextoInicio"
-                android:layout_width="258dp"
-                android:layout_height="253dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:onClick="abrirConfiguracion"
-                android:text="En esta pantalla puedes encontrar varios elementos. Empezando por la parte superior de la aplicación, tenemos el logo de la aplicación, el cual nos redigirá siempre a esta ventana. Por otro lado, tenemos los textos de &quot;Objetos&quot; y &quot;Enemigos&quot;, lo cuáles nos llevarán a la lista correspondiente que queramos ver. Por último, tenemos a la izquierda el nombre de tu usuario. Pinchando en el nombre nos llevará a la ventana del perfil para poder modificarlo."
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twInicioAyuda" />
-
-            <TextView
-                android:id="@+id/twTextoObjetos"
-                android:layout_width="258dp"
-                android:layout_height="367dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:onClick="abrirConfiguracion"
-                android:text="Para la pantalla de objetos, nos encontramos con el mismo menú que hemos explicado en el apartado anterior, y aparte una lista con los objetos del juego. Tiene una barra de búsqueda por si se quiere filtrar objetos por nombre. Para cada objeto, podemos hacer click en la imagen del mismo, y accederemos a la tarjeta privada para cada objeto. Esta tendrá el nombre del objeto, la descripción y tipo del mismo, y una casilla para marcar si está desbloqueado o no. Además, disponemos de una sección de comentarios para cada objeto, pudiendo dar tu opinión sobre el mismo, o lo que desees poner acerca del mismo. También, tienes la opción de eliminar el comentario en caso de que así lo desees."
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twObjetosAyuda" />
-
-            <TextView
-                android:id="@+id/twTextoEnemigo"
-                android:layout_width="239dp"
-                android:layout_height="174dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:onClick="abrirConfiguracion"
-                android:text="Para la pantalla de los enemigos, se sigue la misma funcionalidad que con los objetos, tenemos su nombre, descripción y tipo, así como una casilla para marcar si está o no desbloqueado. También, existe la posibilidad de comentar para cada enemigo, ofreciendo la posibilidad de eliminar el mismo."
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twEnemigosAyuda" />
-
-            <TextView
-                android:id="@+id/twTextoConfiguracion"
-                android:layout_width="257dp"
-                android:layout_height="623dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:onClick="abrirConfiguracion"
-                android:text="En el apartado de “Configuración” dentro del perfil, tendremos varias funcionalidades disponibles que se pueden realizar. Primeramente, encontramos un campo para cambiar el usuario si se desea. Destacar que no podemos establecer el mismo nombre de usuario que ya tenemos, y tampoco podremos poner un nombre si ya está en uso. Dándole al botón de actualizar, podemos cambiar nuestro nombre de usuario. Más abajo, tenemos la misma función para la contraseña. Debemos introducir una contraseña diferente a la que ya tenemos, además de repetir la contraseña para confirmar, y tiene que ser una contraseña que tenga mínimo una mayúscula, una minúscula, un dígito y 8 caracteres. De lo contrario, no nos dejará cambiar la contraseña. Para realizar el cambio, debemos darle al botón de “Actualizar” inmediatamente debajo. Siguiendo, nos encontramos una lista desplegable que contiene el nombre de todos los personajes del TBOI. Podemos cambiar nuestro personaje favorito eligiendo el que queramos de la lista, y dándole al botón de “Actualizar”. Por último, tenemos un botón para eliminar la cuenta, el cuál debes pulsar en el 5 veces antes de que la cuenta se elimine."
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twPerfilConf" />
-
-            <TextView
-                android:id="@+id/twAyudaTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="98dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:onClick="abrirConfiguracion"
-                android:text="AYUDA"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.666"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="257dp"
-                android:layout_height="6dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twTextoInicio"
-                app:srcCompat="@drawable/horizontal_line" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="257dp"
-                android:layout_height="6dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twTextoObjetos"
-                app:srcCompat="@drawable/horizontal_line" />
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="257dp"
-                android:layout_height="6dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twTextoEnemigo"
-                app:srcCompat="@drawable/horizontal_line" />
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="257dp"
-                android:layout_height="6dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twTextoConfiguracion"
-                app:srcCompat="@drawable/horizontal_line" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="257dp"
-                android:layout_height="6dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twTextoProgreso"
-                app:srcCompat="@drawable/horizontal_line" />
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="257dp"
-                android:layout_height="6dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twTextoAccesibilidad"
-                app:srcCompat="@drawable/horizontal_line" />
-
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="257dp"
-                android:layout_height="6dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twTextoInicioSesion"
-                app:srcCompat="@drawable/horizontal_line" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="257dp"
-                android:layout_height="6dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twAyudaTitulo"
-                app:srcCompat="@drawable/horizontal_line" />
-
-            <TextView
-                android:id="@+id/twEnemigosAyuda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="173dp"
-                android:fontFamily="@font/montserrat_italic"
-                android:onClick="abrirConfiguracion"
-                android:text="ENEMIGOS"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-            <TextView
-                android:id="@+id/twPerfilConf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="110dp"
-                android:fontFamily="@font/montserrat_italic"
-                android:onClick="abrirConfiguracion"
-                android:text="CONFIGURACIÓN"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
-
-            <TextView
-                android:id="@+id/twPerfilProgreso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/montserrat_italic"
-                android:onClick="abrirConfiguracion"
-                android:text="PROGRESO"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
-
-            <TextView
-                android:id="@+id/twTextoProgreso"
-                android:layout_width="256dp"
-                android:layout_height="241dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Para esta ventana, tenemos un pequeño resumen del total de objetos y enemigos desbloqueados, donde se nos muestra una barra de progreso indicándonos el número de objetos / enemigos desbloqueados en comparación al total. Además, te aparece el número de objetos / enemigos que has desbloqueado. Por úlitmo, existe un botón para reiniciar el progreso desde 0. Debes pulsar el botón 3 veces para que la acción ocurra."
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twPerfilProgreso" />
-
-            <TextView
-                android:id="@+id/twAccesibilidadAyudaPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/montserrat_italic"
-                android:onClick="abrirConfiguracion"
-                android:text="ACCESIBILIDAD"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
-            <TextView
-                android:id="@+id/twInicioSesionAyuda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/montserrat_italic"
-                android:onClick="abrirConfiguracion"
-                android:text="INICIO DE SESIÓN"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView10" />
-
-            <TextView
-                android:id="@+id/twRegistrarAyuda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/montserrat_italic"
-                android:onClick="abrirConfiguracion"
-                android:text="REGISTRAR"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11" />
-
-            <TextView
-                android:id="@+id/twTextoAccesibilidad"
-                android:layout_width="254dp"
-                android:layout_height="162dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="En la ventana de Accesibilidad, tendremos opción para modificar los colores de textos, fondos, tarjetas, además de modificar el tamaño de los textos. También, se puede activar una opción para activar el reconocimiento de voz, y poder manejar la aplicación mediante comandos de voz. "
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twAccesibilidadAyudaPerfil" />
-
-            <TextView
-                android:id="@+id/twTextoInicioSesion"
-                android:layout_width="255dp"
-                android:layout_height="248dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="En la ventana de iniciar sesión, debes introducir el nombre de tu usuario, con su respectiva contraseña. Existe una casilla que se puede marcar para recordar el inicio de sesión y no tener que iniciar sesión cada vez que se inicia la aplicación. Para entrar a la aplicación introducimos los credenciales válidos, y le damos al botón de “Iniciar sesión”. Tenemos también un botón para registrar una cuenta de la que hablaremos a continuación."
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twInicioSesionAyuda" />
-
-            <TextView
-                android:id="@+id/twTextoRegistrar"
-                android:layout_width="259dp"
-                android:layout_height="385dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="En esta última ventana, tenemos un formulario para dar de alta a un nuevo usuario en el sistema. Debes rellenar los campos que se muestran. Para el usuario, debe ser único en el sistema, es decir, no pueden haber dos usuarios con el mismo nombre. Además, debes introducir una contraseña que tenga como mínimo una mayúscula, una minúscula y 8 caracteres. Debes repetir la contraseña para confirmar. Una vez hayas rellenado el formulario, debes darle al botón de “Registrar” y ya te habrás creado una cuenta. Para iniciar sesión, solo debes introducir el usuario y la contraseña y darle a “Iniciar sesión”."
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.666"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twRegistrarAyuda" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
     <ImageView
         android:id="@+id/imgLogoAyuda"
         android:layout_width="67dp"
@@ -433,7 +34,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="125dp"
-        android:layout_height="1000dp"
+        android:layout_height="820dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="1dp"
         android:background="#EA8C55"
@@ -515,5 +116,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twAyudaAyuda" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListaTextosAyuda"
+        android:layout_width="287dp"
+        android:layout_height="700dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/twTituloPerfilAyuda" />
+
+    <TextView
+        android:id="@+id/twTituloPerfilAyuda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="AYUDA"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

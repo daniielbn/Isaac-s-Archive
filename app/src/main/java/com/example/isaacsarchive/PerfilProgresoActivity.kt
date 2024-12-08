@@ -50,7 +50,7 @@ class PerfilProgresoActivity : AppCompatActivity() {
 
     private lateinit var preferencias: SharedPreferences
 
-    private val db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+    private val db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -155,7 +155,7 @@ class PerfilProgresoActivity : AppCompatActivity() {
     fun eliminarProgreso(v: View?) {
         contadorEliminar++
         if (contadorEliminar <= 3) {
-            Toast.makeText(this, "Pulsa ${3 - contadorEliminar} para eliminar el progreso.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Pulsa ${4 - contadorEliminar} para eliminar el progreso.", Toast.LENGTH_SHORT).show()
         } else {
             if (db.eliminarDesbloqueosEnemigoUsuario(usuario) && db.eliminarDesbloqueosObjetoUsuario(usuario)) {
                 Toast.makeText(this, "Progreso eliminado correctamente", Toast.LENGTH_SHORT).show()

@@ -25,7 +25,7 @@ class RegistroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_registro)
-        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
 
         // Inicializamos los elementos de la vista
         etUsuario = findViewById(R.id.etUsuarioRegistrar)
@@ -45,7 +45,7 @@ class RegistroActivity : AppCompatActivity() {
 
     fun registrar(v: View?) {
         if (comprobarUsuario() && comprobarContrasena() && db.consultarUsuario(etUsuario.text.toString()) == 0) {
-            db.insertarUsuario(this, etUsuario.text.toString(), encriptarContrasena(etContrasena1.text.toString()))
+            db.insertarUsuario(etUsuario.text.toString(), encriptarContrasena(etContrasena1.text.toString()))
             startActivity(ventanaLogin)
             borrarCampos()
             finish()

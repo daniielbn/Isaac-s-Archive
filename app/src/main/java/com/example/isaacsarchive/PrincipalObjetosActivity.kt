@@ -26,7 +26,7 @@ class PrincipalObjetosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPrincipalObjetosBinding.inflate(layoutInflater)
         usuario = intent.getStringExtra("usuario").toString()
-        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
         setContentView(binding.root)
 
         listaObjetos = db.obtenerObjetos()

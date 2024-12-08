@@ -29,7 +29,7 @@ class PrincipalEnemigosActivity : AppCompatActivity() {
         binding = ActivityPrincipalEnemigosBinding.inflate(layoutInflater)
         setContentView(binding.root)
         usuario = intent.getStringExtra("usuario").toString()
-        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
         listaEnemigos = db.obtenerEnemigos()
         setupRecyclerView()
 

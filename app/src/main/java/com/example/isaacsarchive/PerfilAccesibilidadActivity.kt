@@ -29,7 +29,7 @@ class PerfilAccesibilidadActivity : AppCompatActivity() {
 
     private lateinit var preferencias: SharedPreferences
 
-    private val db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+    private val db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

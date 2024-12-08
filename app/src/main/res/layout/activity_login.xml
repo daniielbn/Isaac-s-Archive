@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/twUsuarioComentario"
         android:layout_width="376dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -44,9 +44,10 @@
     <TextView
         android:id="@+id/twUsuario"
         android:layout_width="65dp"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
         android:layout_marginTop="84dp"
+        android:layout_marginEnd="5dp"
         android:editable="false"
         android:fontFamily="@font/montserrat_italic"
         android:text="Usuario"
@@ -54,15 +55,17 @@
         android:textAllCaps="false"
         android:textColor="#F2F3AE"
         android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/etUsuario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/twUsuarioComentario" />
 
     <TextView
         android:id="@+id/twContrasena"
         android:layout_width="95dp"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="5dp"
         android:editable="false"
         android:fontFamily="@font/montserrat_italic"
         android:text="Contraseña"
@@ -70,6 +73,7 @@
         android:textAllCaps="false"
         android:textColor="#F2F3AE"
         android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/etContrasena"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/twUsuario" />
 
@@ -104,7 +108,7 @@
     <CheckBox
         android:id="@+id/cbRecordar"
         android:layout_width="233dp"
-        android:layout_height="49dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="100dp"
@@ -124,10 +128,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="12dp"
         android:backgroundTint="#000000"
         android:fontFamily="@font/montserrat_bold"
         android:onClick="iniciarSesion"
         android:text="Iniciar sesión"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRegistrarme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cbRecordar" />
 
@@ -135,6 +141,7 @@
         android:id="@+id/buttonRegistrarme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
         android:backgroundTint="#000000"
@@ -142,12 +149,13 @@
         android:onClick="registrarUsuario"
         android:text="Registrarme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonIniciar"
         app:layout_constraintTop_toBottomOf="@+id/cbRecordar" />
 
     <TextView
         android:id="@+id/twErrorInicio"
         android:layout_width="363dp"
-        android:layout_height="29dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="25dp"

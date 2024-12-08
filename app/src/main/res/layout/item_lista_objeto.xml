@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="#EA8C55"
-    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="6dp"
     card_view:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,43 +21,45 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="TextView"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="24sp"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imgLogoLista"
-            android:layout_width="83dp"
-            android:layout_height="94dp"
+            android:layout_width="99dp"
+            android:layout_height="136dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="4dp"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/twUsuarioComentario"
             card_view:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/twDescripcion"
-            android:layout_width="248dp"
-            android:layout_height="124dp"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/montserrat_italic"
+            android:fontFamily="@font/montserrat_regular"
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#000000"
+            android:textSize="20sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent" />
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/twRareza"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/montserrat_italic"
             android:text="TextView"
             android:textColor="#FFFFFF"
+            android:textSize="16sp"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/imgLogoLista" />
     </androidx.constraintlayout.widget.ConstraintLayout>

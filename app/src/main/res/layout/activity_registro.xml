@@ -38,41 +38,47 @@
     <TextView
         android:id="@+id/twUsuario"
         android:layout_width="85dp"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="44dp"
+        android:layout_marginEnd="5dp"
         android:fontFamily="@font/montserrat_italic"
         android:text="Usuario"
         android:textColor="#F2F3AE"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/etUsuarioRegistrar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/twTitulo" />
 
     <TextView
         android:id="@+id/twContrasena1"
         android:layout_width="108dp"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="5dp"
         android:fontFamily="@font/montserrat_italic"
         android:text="Contraseña"
         android:textAlignment="textEnd"
         android:textColor="#F2F3AE"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/etContrasena1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/twUsuario" />
 
     <TextView
         android:id="@+id/twContrasena2"
         android:layout_width="108dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="5dp"
         android:fontFamily="@font/montserrat_italic"
         android:text="Repetir contraseña"
         android:textAlignment="center"
         android:textColor="#F2F3AE"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/etContrasena2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/twContrasena1" />
 
@@ -125,31 +131,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="25dp"
         android:backgroundTint="#000000"
         android:fontFamily="@font/montserrat_bold"
         android:onClick="registrar"
         android:text="Registrarse"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSalir"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/twContrasena2" />
+        app:layout_constraintTop_toBottomOf="@+id/twError" />
 
     <Button
         android:id="@+id/buttonSalir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="70dp"
         android:backgroundTint="#000000"
         android:fontFamily="@font/montserrat_bold"
         android:onClick="salir"
         android:text="Salir"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContrasena2" />
+        app:layout_constraintStart_toEndOf="@+id/buttonRegistrar"
+        app:layout_constraintTop_toBottomOf="@+id/twError" />
 
     <TextView
         android:id="@+id/twError"
         android:layout_width="262dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="75dp"

@@ -37,10 +37,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="12dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Objetos"
         android:textColor="#F2F3AE"
         android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/twEnemigos2"
         app:layout_constraintStart_toEndOf="@+id/imgLogoPrincipal"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,14 +50,16 @@
         android:id="@+id/twEnemigos2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="36dp"
         android:fontFamily="@font/montserrat_regular"
         android:onClick="abrirEnemigos"
         android:text="Enemigos"
         android:textColor="#F2F3AE"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/twPerfil"
+        app:layout_constraintStart_toEndOf="@+id/twObjetos2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

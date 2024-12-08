@@ -48,7 +48,7 @@ class ItemEnemigoActivity : AppCompatActivity() {
         usuario = intent.getStringExtra("usuario").toString()
         enemigo = intent.getSerializableExtra("enemigo") as Enemigo
         setContentView(binding.root)
-        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
         listaComentarios = db.obtenerComentariosEnemigo(enemigo)
         adaptadorComentario = AdaptadorComentario(listaComentarios, usuario)
         setupRecyclerView()
@@ -82,11 +82,10 @@ class ItemEnemigoActivity : AppCompatActivity() {
         cbDesbloqueado.setOnCheckedChangeListener() { buttonView, isChecked ->
             if (isChecked) {
                 enemigo.desbloqueado = true
-                actualizarEstadoDesbloqueado(enemigo, 0)
             } else {
                 enemigo.desbloqueado = false
-                actualizarEstadoDesbloqueado(enemigo, 1)
             }
+            actualizarEstadoDesbloqueado(enemigo)
         }
     }
 
@@ -117,19 +116,11 @@ class ItemEnemigoActivity : AppCompatActivity() {
         }
     }
 
-    private fun actualizarEstadoDesbloqueado(enemigo: Enemigo, opcion: Int) {
-        if (opcion == 0) {
-            if (db.actualizarDesbloqueadoEnemigo(enemigo, usuario)) {
-                Toast.makeText(this, "Se actualizó el estado de desbloqueado.\nEl enemigo ahora está desbloqueado.", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Error al actualizar el estado de desbloqueado", Toast.LENGTH_SHORT).show()
-            }
+    private fun actualizarEstadoDesbloqueado(enemigo: Enemigo) {
+        if (db.actualizarDesbloqueadoEnemigo(enemigo, usuario)) {
+            Toast.makeText(this, "Se actualizó el estado de desbloqueado.", Toast.LENGTH_SHORT).show()
         } else {
-            if (db.eliminarDesbloqueoEnemigo(enemigo, usuario)) {
-                Toast.makeText(this, "Se actualizó el estado de desbloqueado.\nEl enemigo ahora está bloqueado.", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Error al actualizar el estado de desbloqueado", Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(this, "Error al actualizar el estado de desbloqueado", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -148,7 +139,7 @@ class ItemEnemigoActivity : AppCompatActivity() {
     private fun llenarEnemigo() {
         twTitulo.text = enemigo.nombre
         twDescripcion.text = enemigo.descripcion
-        cbDesbloqueado.isSelected = enemigo.desbloqueado
+        cbDesbloqueado.isSelected = db.comprobarDesbloqueoEnemigo(enemigo, usuario)
         twTipo.text = enemigo.tipo
 
         val nombreImagen = obtenerRuta(enemigo.nombre)

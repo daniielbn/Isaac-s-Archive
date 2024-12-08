@@ -49,7 +49,7 @@ class ItemObjetoActivity : AppCompatActivity() {
         usuario = intent.getStringExtra("usuario").toString()
         objeto = intent.getSerializableExtra("objeto") as Objeto
         setContentView(binding.root)
-        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 7)
+        db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
         listaComentarios = db.obtenerComentariosObjeto(objeto)
         adaptadorComentario = AdaptadorComentario(listaComentarios, usuario)
         setupRecyclerView()
@@ -84,11 +84,10 @@ class ItemObjetoActivity : AppCompatActivity() {
         cbDesbloqueado.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 objeto.desbloqueado = true
-                actualizarEstadoDesbloqueado(objeto, 0)
             } else {
                 objeto.desbloqueado = false
-                actualizarEstadoDesbloqueado(objeto, 1)
             }
+            actualizarEstadoDesbloqueado(objeto)
         }
     }
 
@@ -119,19 +118,11 @@ class ItemObjetoActivity : AppCompatActivity() {
         }
     }
 
-    private fun actualizarEstadoDesbloqueado(objeto: Objeto, opcion: Int) {
-        if (opcion == 0) {
-            if (db.actualizarDesbloqueadoObjeto(objeto, usuario)) {
-                Toast.makeText(this, "Se actualizó el estado de desbloqueado.\n El objeto ahora está desbloqueado.", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Error al actualizar el estado de desbloqueado", Toast.LENGTH_SHORT).show()
-            }
+    private fun actualizarEstadoDesbloqueado(objeto: Objeto) {
+        if (db.actualizarDesbloqueadoObjeto(objeto, usuario)) {
+            Toast.makeText(this, "Se actualizó el estado de desbloqueado.", Toast.LENGTH_SHORT).show()
         } else {
-            if (db.eliminarDesbloqueoObjeto(objeto, usuario)) {
-                Toast.makeText(this, "Se actualizó el estado de desbloqueado.\nEl objeto ahora esta bloqueado", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Error al actualizar el estado de desbloqueado", Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(this, "Error al actualizar el estado de desbloqueado", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -150,7 +141,7 @@ class ItemObjetoActivity : AppCompatActivity() {
     private fun llenarObjeto() {
         twTitulo.text = objeto.nombre
         twDescripcion.text = objeto.descripcion
-        cbDesbloqueado.isSelected = objeto.desbloqueado
+        cbDesbloqueado.isSelected = db.comprobarDesbloqueoObjeto(objeto, usuario)
         twTipo.text = objeto.rareza
 
         val nombreImagen = obtenerRuta(objeto.nombre)

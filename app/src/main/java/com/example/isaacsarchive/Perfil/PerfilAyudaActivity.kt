@@ -1,6 +1,7 @@
-package com.example.isaacsarchive
+package com.example.isaacsarchive.Perfil
 
 import Adaptadores.AdaptadorTextoAyuda
+import BaseActivity.BaseActivity
 import Clases.AdminSQLiteOpenHelper
 import Clases.TextoAyuda
 import android.annotation.SuppressLint
@@ -11,12 +12,13 @@ import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.isaacsarchive.Credenciales.LoginActivity
+import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
+import com.example.isaacsarchive.R
 import com.example.isaacsarchive.databinding.ActivityPerfilAyudaBinding
 
-class PerfilAyudaActivity : AppCompatActivity() {
+class PerfilAyudaActivity : BaseActivity() {
     private lateinit var binding: ActivityPerfilAyudaBinding
     private lateinit var adaptador: AdaptadorTextoAyuda
     var listaTextosAyuda = ArrayList<TextoAyuda>()
@@ -67,7 +69,7 @@ class PerfilAyudaActivity : AppCompatActivity() {
         ventanaAccesibilidad = Intent(this, PerfilAccesibilidadActivity::class.java)
         ventanaLogin = Intent(this, LoginActivity::class.java)
 
-        preferencias = getSharedPreferences("preferencias-usuario", MODE_PRIVATE)
+        preferencias = getSharedPreferences("preferencias_usuario", MODE_PRIVATE)
     }
 
     fun abrirInicio(v: View?) {

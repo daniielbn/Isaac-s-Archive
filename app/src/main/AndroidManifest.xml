@@ -13,34 +13,34 @@
         android:theme="@style/Theme.IsaacsArchive"
         tools:targetApi="31">
         <activity
-            android:name=".PerfilAyudaActivity"
+            android:name=".Perfil.PerfilAyudaActivity"
             android:exported="false" />
         <activity
-            android:name=".PerfilAccesibilidadActivity"
+            android:name=".Perfil.PerfilAccesibilidadActivity"
             android:exported="false" />
         <activity
-            android:name=".PerfilProgresoActivity"
+            android:name=".Perfil.PerfilProgresoActivity"
             android:exported="false" />
         <activity
-            android:name=".ItemEnemigoActivity"
+            android:name=".Items.ItemEnemigoActivity"
             android:exported="false" />
         <activity
-            android:name=".ItemObjetoActivity"
+            android:name=".Items.ItemObjetoActivity"
             android:exported="false" />
         <activity
-            android:name=".PrincipalEnemigosActivity"
+            android:name=".Principales.PrincipalEnemigosActivity"
             android:exported="false" />
         <activity
-            android:name=".PerfilActivity"
+            android:name=".Perfil.PerfilActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistroActivity"
+            android:name=".Credenciales.RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".PrincipalObjetosActivity"
+            android:name=".Principales.PrincipalObjetosActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Credenciales.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

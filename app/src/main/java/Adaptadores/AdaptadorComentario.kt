@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import Clases.Comentario
+import android.content.SharedPreferences
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.isaacsarchive.R
@@ -35,6 +36,7 @@ class AdaptadorComentario(private val comentarios: MutableList<Comentario>, priv
         private val usuarioComentario: TextView = itemView.findViewById(R.id.twUsuarioComentario)
         private val imgEliminar: ImageView = itemView.findViewById(R.id.imgEliminar)
         private val db = AdminSQLiteOpenHelper(itemView.context, "IsaacsArchive", null, 8)
+        private val preferencias: SharedPreferences = itemView.context.getSharedPreferences("preferencias_usuario", 0)
 
 
         fun bind(
@@ -49,9 +51,9 @@ class AdaptadorComentario(private val comentarios: MutableList<Comentario>, priv
             fechaComentario.text = getFechaFormateada(comentario.fecha)
             imgEliminar.visibility = View.GONE
 
-            // Mostrar botón eliminar solo si el usuario coincide
             if (usuario == db.consultarNombreUsuario(comentario.id_usuario)) {
                 imgEliminar.visibility = View.VISIBLE
+                establecerImagen()
             }
 
             imgEliminar.setOnClickListener {
@@ -63,6 +65,16 @@ class AdaptadorComentario(private val comentarios: MutableList<Comentario>, priv
                     Toast.makeText(itemView.context, "Error: No se pudo eliminar el comentario.", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        private fun establecerImagen() {
+            val tema = preferencias.getString("tema", "")
+            if (tema.equals("claro")) {
+                imgEliminar.setImageResource(R.drawable.eliminar_claro)
+            } else {
+                imgEliminar.setImageResource(R.drawable.eliminar_oscuro)
+            }
+
         }
 
         private fun getFechaFormateada(fecha: String): String {

@@ -1,5 +1,6 @@
-package com.example.isaacsarchive
+package com.example.isaacsarchive.Credenciales
 
+import BaseActivity.BaseActivity
 import Clases.AdminSQLiteOpenHelper
 import android.content.Intent
 import android.content.SharedPreferences
@@ -11,9 +12,12 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
+import com.example.isaacsarchive.R
 import java.security.MessageDigest
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
     private lateinit var etUsuario: EditText
     private lateinit var etContrasenia: EditText
     private lateinit var twError: TextView
@@ -50,13 +54,14 @@ class LoginActivity : AppCompatActivity() {
 
         preferencias = getSharedPreferences("preferencias_usuario", MODE_PRIVATE)
 
+        establecerTema(preferencias.getString("tema", "")!!)
         comprobarRecordarContrasena()
     }
 
     fun iniciarSesion(v: View?) {
         val usuario = etUsuario.text.toString()
-        val contrasenaEncriptada = encriptarContrasena(etContrasenia.text.toString())
-        if (verificarUsuario(usuario, contrasenaEncriptada)) {
+        val contrasena = encriptarContrasena(etContrasenia.text.toString())
+        if (verificarUsuario(usuario, contrasena)) {
             recordarContrasena()
             abrirPrincipal(usuario)
         } else {
@@ -102,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun verificarUsuario(usuario: String, contrasena: String): Boolean {
-        if (comprobarUsuario() && comprobarContraseña() && db.consultarUsuario(usuario) > 0) {
+        if (comprobarUsuario() && comprobarContraseña() && db.consultarUsuarioContrasena(usuario, contrasena)) {
             return true
         }
         return false
@@ -117,5 +122,15 @@ class LoginActivity : AppCompatActivity() {
     fun abrirPrincipal(usuario: String) {
         ventanaPrincipal.putExtra("usuario", usuario)
         startActivity(ventanaPrincipal)
+    }
+
+    fun establecerTema(esOscuro: String) {
+        if (esOscuro.equals("oscuro")) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else if (esOscuro.equals("claro")) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
     }
 }

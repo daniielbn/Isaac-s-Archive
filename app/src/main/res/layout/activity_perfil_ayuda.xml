@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#81171B"
-    tools:context=".PerfilAyudaActivity">
+    android:background="@color/colorPrimary"
+    tools:context=".Perfil.PerfilAyudaActivity">
 
     <ImageView
         android:id="@+id/imgLogoAyuda"
@@ -27,7 +27,7 @@
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
         android:text="admin"
-        android:textColor="#F2F3AE"
+        android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,7 @@
         android:layout_height="820dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="1dp"
-        android:background="#EA8C55"
+        android:background="@color/colorSecondary"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoAyuda">
@@ -52,7 +52,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirConfiguracion"
             android:text="Configuración"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +66,7 @@
             android:layout_marginEnd="31dp"
             android:fontFamily="@font/montserrat_regular"
             android:text="Progreso"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twConfiguracionAyuda" />
@@ -81,7 +81,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="Accesibilidad"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twProgresoAyuda" />
@@ -96,7 +96,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:onClick="abrirAyuda"
             android:text="Ayuda"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twAccesibilidadAyuda" />
@@ -111,7 +111,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="cerrarSesion"
             android:text="Cerrar sesión"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twAyudaAyuda" />
@@ -136,7 +136,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="AYUDA"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorText"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"

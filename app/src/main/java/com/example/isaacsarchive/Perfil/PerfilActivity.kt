@@ -1,6 +1,7 @@
-package com.example.isaacsarchive
+package com.example.isaacsarchive.Perfil
 
 import Adaptadores.AdaptadorSpinner
+import BaseActivity.BaseActivity
 import Clases.AdminSQLiteOpenHelper
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -15,9 +16,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.isaacsarchive.Credenciales.LoginActivity
+import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
+import com.example.isaacsarchive.R
 import java.security.MessageDigest
 
-class PerfilActivity : AppCompatActivity() {
+class PerfilActivity : BaseActivity() {
     private var contadorEliminarCuenta = 0
     private lateinit var usuario: String
     private lateinit var twPerfil: TextView

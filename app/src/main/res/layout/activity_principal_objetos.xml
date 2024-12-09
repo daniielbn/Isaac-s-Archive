@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#81171B"
-    tools:context=".PrincipalObjetosActivity">
+    android:background="@color/colorPrimary"
+    tools:context=".Principales.PrincipalObjetosActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLista"
@@ -40,7 +40,7 @@
         android:layout_marginEnd="12dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Objetos"
-        android:textColor="#F2F3AE"
+        android:textColor="@color/colorText"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/twEnemigos2"
         app:layout_constraintStart_toEndOf="@+id/imgLogoPrincipal"
@@ -56,7 +56,7 @@
         android:fontFamily="@font/montserrat_regular"
         android:onClick="abrirEnemigos"
         android:text="Enemigos"
-        android:textColor="#F2F3AE"
+        android:textColor="@color/colorText"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/twPerfil"
         app:layout_constraintStart_toEndOf="@+id/twObjetos2"
@@ -72,24 +72,35 @@
         android:fontFamily="@font/montserrat_bold"
         android:onClick="abrirPerfil"
         android:text="admin"
-        android:textColor="#F2F3AE"
+        android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etBuscador"
-        android:layout_width="342dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="306dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#FFFFFF"
+        android:layout_marginEnd="14dp"
+        android:backgroundTint="@color/colorBackground"
         android:ems="10"
         android:hint="Buscador"
         android:inputType="text"
-        android:textColor="#F2F3AE"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/colorText"
+        app:layout_constraintEnd_toStartOf="@+id/imgMicrofonoObjeto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoPrincipal" />
+
+    <ImageView
+        android:id="@+id/imgMicrofonoObjeto"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="25dp"
+        android:onClick="iniciarReconocimientoVoz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/twPerfil"
+        app:srcCompat="@drawable/microfono_claro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,10 @@
-package com.example.isaacsarchive
+package com.example.isaacsarchive.Items
 
 import Adaptadores.AdaptadorComentario
+import BaseActivity.BaseActivity
 import Clases.AdminSQLiteOpenHelper
 import Clases.Comentario
-import Clases.Enemigo
+import Clases.Objeto
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -15,56 +16,61 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.isaacsarchive.databinding.ActivityItemEnemigoBinding
-
+import com.example.isaacsarchive.Perfil.PerfilActivity
+import com.example.isaacsarchive.Principales.PrincipalEnemigosActivity
+import com.example.isaacsarchive.R
+import com.example.isaacsarchive.databinding.ActivityItemObjetoBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class ItemEnemigoActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityItemEnemigoBinding
+class ItemObjetoActivity : BaseActivity() {
+    private lateinit var binding: ActivityItemObjetoBinding
     private lateinit var adaptadorComentario: AdaptadorComentario
-    private lateinit var ventanaObjeto: Intent
+    private lateinit var ventanaEnemigos: Intent
     private lateinit var ventanaPerfil: Intent
+
     private lateinit var db: AdminSQLiteOpenHelper
+
 
     private lateinit var twPerfil: TextView
     private lateinit var twTitulo: TextView
     private lateinit var twDescripcion: TextView
     private lateinit var twTipo: TextView
     private lateinit var cbDesbloqueado: CheckBox
-    private lateinit var imgEnemigo: ImageView
+    private lateinit var imgObjeto: ImageView
     private lateinit var imgVolver: ImageView
     private lateinit var etComentario: EditText
     private lateinit var buttonComentar: Button
 
     private lateinit var usuario: String
-    private lateinit var enemigo: Enemigo
+    private lateinit var objeto: Objeto
     private var listaComentarios = mutableListOf<Comentario>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityItemEnemigoBinding.inflate(layoutInflater)
+        binding = ActivityItemObjetoBinding.inflate(layoutInflater)
         usuario = intent.getStringExtra("usuario").toString()
-        enemigo = intent.getSerializableExtra("enemigo") as Enemigo
+        objeto = intent.getSerializableExtra("objeto") as Objeto
         setContentView(binding.root)
         db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
-        listaComentarios = db.obtenerComentariosEnemigo(enemigo)
+        listaComentarios = db.obtenerComentariosObjeto(objeto)
         adaptadorComentario = AdaptadorComentario(listaComentarios, usuario)
         setupRecyclerView()
 
+
         twPerfil = findViewById(R.id.twPerfil)
         twPerfil.contentDescription = "Nombre de perfil del usuario"
-        twTitulo = findViewById(R.id.twTituloEnemigo)
-        twTitulo.contentDescription = "Nombre del enemigo"
-        twDescripcion = findViewById(R.id.twDescripcionEnemigo)
-        twDescripcion.contentDescription = "Descripción del enemigo"
-        twTipo = findViewById(R.id.twTipoEnemigo)
-        twTipo.contentDescription = "Tipo de enemigo"
-        cbDesbloqueado = findViewById(R.id.cbDesbloqueadoEnemigo)
-        cbDesbloqueado.contentDescription = "Checkbox para desbloquear enemigo"
-        imgEnemigo = findViewById(R.id.imgEnemigo)
-        imgEnemigo.contentDescription = "Imagen del enemigo"
+        twTitulo = findViewById(R.id.twTituloObjeto)
+        twTitulo.contentDescription = "Nombre del objeto"
+        twDescripcion = findViewById(R.id.twDescripcionObjeto)
+        twDescripcion.contentDescription = "Descripción del objeto"
+        twTipo = findViewById(R.id.twTipoObjeto)
+        twTipo.contentDescription = "Tipo de objeto"
+        cbDesbloqueado = findViewById(R.id.cbDesbloqueadoObjeto)
+        cbDesbloqueado.contentDescription = "Checkbox de desbloqueo de objeto"
+        imgObjeto = findViewById(R.id.imgObjeto)
+        imgObjeto.contentDescription = "Imagen del objeto"
         imgVolver = findViewById(R.id.imgVolver)
         imgVolver.contentDescription = "Botón para volver a la pantalla anterior"
         etComentario = findViewById(R.id.etComentario)
@@ -73,25 +79,25 @@ class ItemEnemigoActivity : AppCompatActivity() {
         buttonComentar.contentDescription = "Botón para agregar comentario"
 
         twPerfil.text = usuario
-        llenarEnemigo()
+        llenarObjeto()
 
-        ventanaObjeto = Intent(this, PrincipalObjetosActivity::class.java)
+        ventanaEnemigos = Intent(this, PrincipalEnemigosActivity::class.java)
         ventanaPerfil = Intent(this, PerfilActivity::class.java)
 
-        cbDesbloqueado.isChecked = db.comprobarDesbloqueoEnemigo(enemigo, usuario)
-        cbDesbloqueado.setOnCheckedChangeListener() { buttonView, isChecked ->
+        cbDesbloqueado.isChecked = db.comprobarDesbloqueoObjeto(objeto, usuario)
+        cbDesbloqueado.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                enemigo.desbloqueado = true
+                objeto.desbloqueado = true
             } else {
-                enemigo.desbloqueado = false
+                objeto.desbloqueado = false
             }
-            actualizarEstadoDesbloqueado(enemigo)
+            actualizarEstadoDesbloqueado(objeto)
         }
     }
 
-    fun abrirObjetos(v: View?) {
-        ventanaObjeto.putExtra("usuario", usuario)
-        startActivity(ventanaObjeto)
+    fun abrirEnemigos(v: View?) {
+        ventanaEnemigos.putExtra("usuario", usuario)
+        startActivity(ventanaEnemigos)
     }
 
     fun abrirPerfil(v: View?) {
@@ -108,7 +114,7 @@ class ItemEnemigoActivity : AppCompatActivity() {
             enviarComentario(
                 etComentario.text.toString(),
                 db.consultarUsuario(usuario),
-                db.consultarEnemigo(enemigo.nombre)
+                db.consultarObjeto(objeto.nombre)
             )
             etComentario.text.clear()
         } else {
@@ -116,17 +122,17 @@ class ItemEnemigoActivity : AppCompatActivity() {
         }
     }
 
-    private fun actualizarEstadoDesbloqueado(enemigo: Enemigo) {
-        if (db.actualizarDesbloqueadoEnemigo(enemigo, usuario)) {
+    private fun actualizarEstadoDesbloqueado(objeto: Objeto) {
+        if (db.actualizarDesbloqueadoObjeto(objeto, usuario)) {
             Toast.makeText(this, "Se actualizó el estado de desbloqueado.", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Error al actualizar el estado de desbloqueado", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun enviarComentario(nuevoComentario: String, idUsuario: Int, idEnemigo: Int) {
-        val comentario = Comentario(idUsuario, null, idEnemigo, nuevoComentario, getFechaActual())
-        if (db.anadirComentarioEnemigo(comentario)) {
+    fun enviarComentario(nuevoComentario: String, idUsuario: Int, idObjeto: Int) {
+        val comentario = Comentario(idUsuario, idObjeto, null, nuevoComentario, getFechaActual())
+        if (db.anadirComentarioObjeto(comentario)) {
             listaComentarios.add(comentario)
             adaptadorComentario.notifyItemInserted(listaComentarios.size - 1)
             binding.rvListaComentarios.scrollToPosition(listaComentarios.size - 1)
@@ -136,20 +142,20 @@ class ItemEnemigoActivity : AppCompatActivity() {
         }
     }
 
-    private fun llenarEnemigo() {
-        twTitulo.text = enemigo.nombre
-        twDescripcion.text = enemigo.descripcion
-        cbDesbloqueado.isSelected = db.comprobarDesbloqueoEnemigo(enemigo, usuario)
-        twTipo.text = enemigo.tipo
+    private fun llenarObjeto() {
+        twTitulo.text = objeto.nombre
+        twDescripcion.text = objeto.descripcion
+        cbDesbloqueado.isSelected = db.comprobarDesbloqueoObjeto(objeto, usuario)
+        twTipo.text = objeto.rareza
 
-        val nombreImagen = obtenerRuta(enemigo.nombre)
-        val idImagen = imgEnemigo.context.resources.getIdentifier(nombreImagen, "drawable", imgEnemigo.context.packageName)
-        imgEnemigo.setImageResource(idImagen)
+        val nombreImagen = obtenerRuta(objeto.nombre)
+        val idImagen = imgObjeto.context.resources.getIdentifier(nombreImagen, "drawable", imgObjeto.context.packageName)
+        imgObjeto.setImageResource(idImagen)
     }
 
     private fun obtenerRuta(nombre: String): String {
         if (nombre.lowercase().equals("gemini")) {
-            return "gemini_enemigo"
+            return "gemini_objeto"
         }
         return nombre.lowercase().replace(" ", "_").replace("'", "").replace(".", "")
     }

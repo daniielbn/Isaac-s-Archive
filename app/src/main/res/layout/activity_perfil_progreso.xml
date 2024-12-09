@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#81171B"
-    tools:context=".PerfilProgresoActivity">
+    android:background="@color/colorPrimary"
+    tools:context=".Perfil.PerfilProgresoActivity">
 
     <ImageView
         android:id="@+id/imgLogoPerfil"
@@ -27,7 +27,7 @@
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
         android:text="admin"
-        android:textColor="#F2F3AE"
+        android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,7 @@
         android:layout_height="1000dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="1dp"
-        android:background="#EA8C55"
+        android:background="@color/colorSecondary"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoPerfil">
@@ -52,7 +52,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirConfiguracion"
             android:text="Configuración"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +66,7 @@
             android:layout_marginEnd="31dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Progreso"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twConfiguracionPerfil" />
@@ -81,7 +81,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="Accesibilidad"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twProgresoPerfil" />
@@ -96,7 +96,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAyuda"
             android:text="Ayuda"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twAccesibilidadPerfil" />
@@ -111,7 +111,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="cerrarSesion"
             android:text="Cerrar sesión"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twAyudaPerfil" />
@@ -123,7 +123,7 @@
         android:layout_height="1000dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="32dp"
-        android:background="#000000"
+        android:background="@color/colorBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/twPerfilPerfil">
@@ -137,7 +137,7 @@
             android:layout_marginEnd="86dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Progreso"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +182,7 @@
             android:onClick="abrirAccesibilidad"
             android:text="Porcentaje de objetos desbloqueados"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -199,7 +199,7 @@
             android:onClick="abrirAccesibilidad"
             android:text="Porcentaje de enemigos desbloqueados"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -215,7 +215,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="999"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toStartOf="@+id/twSeparadorObjetos"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pbObjetos" />
@@ -230,7 +230,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="999"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toStartOf="@+id/twSeparadorEnemigos"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pbEnemigos" />
@@ -245,7 +245,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="999"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/twSeparadorObjetos"
             app:layout_constraintTop_toBottomOf="@+id/pbObjetos" />
@@ -260,7 +260,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="999"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/twSeparadorEnemigos"
             app:layout_constraintTop_toBottomOf="@+id/pbEnemigos" />
@@ -275,7 +275,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="999"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/pbEnemigos"
@@ -291,7 +291,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="999"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pbObjetos"
             app:layout_constraintTop_toBottomOf="@+id/twProgresoObjetos" />
@@ -306,7 +306,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="/"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toStartOf="@+id/twTotalObjetos"
             app:layout_constraintStart_toEndOf="@+id/twObjetosDesbloqueados"
             app:layout_constraintTop_toBottomOf="@+id/pbObjetos" />
@@ -321,7 +321,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:onClick="abrirAccesibilidad"
             android:text="/"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toStartOf="@+id/twTotalObjetos"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/twObjetosDesbloqueados"
@@ -330,13 +330,14 @@
         <Button
             android:id="@+id/buttonEliminarProgreso"
             android:layout_width="179dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="53dp"
             android:layout_marginTop="54dp"
             android:layout_marginEnd="53dp"
-            android:backgroundTint="#AD2E24"
+            android:backgroundTint="@color/colorPrimaryVariant"
             android:onClick="eliminarProgreso"
             android:text="Eliminar progreso"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twEnemigosDesbloqueados" />

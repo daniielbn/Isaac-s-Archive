@@ -1,5 +1,6 @@
-package com.example.isaacsarchive
+package com.example.isaacsarchive.Credenciales
 
+import BaseActivity.BaseActivity
 import Clases.AdminSQLiteOpenHelper
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +10,10 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.isaacsarchive.R
 import java.security.MessageDigest
 
-class RegistroActivity : AppCompatActivity() {
+class RegistroActivity : BaseActivity() {
     private lateinit var etUsuario: EditText
     private lateinit var etContrasena1: EditText
     private lateinit var etContrasena2: EditText

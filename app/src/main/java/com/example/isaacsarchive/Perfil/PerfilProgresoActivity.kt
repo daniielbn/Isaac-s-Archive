@@ -1,5 +1,6 @@
-package com.example.isaacsarchive
+package com.example.isaacsarchive.Perfil
 
+import BaseActivity.BaseActivity
 import Clases.AdminSQLiteOpenHelper
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,8 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.isaacsarchive.Credenciales.LoginActivity
+import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
+import com.example.isaacsarchive.R
 
-class PerfilProgresoActivity : AppCompatActivity() {
+class PerfilProgresoActivity : BaseActivity() {
     private var contadorEliminar = 0
 
     private var totalObjetos = 0
@@ -118,7 +122,7 @@ class PerfilProgresoActivity : AppCompatActivity() {
         ventanaAyuda = Intent(this, PerfilAyudaActivity::class.java)
         ventanaLogin = Intent(this, LoginActivity::class.java)
 
-        preferencias = getSharedPreferences("preferencias-usuario", MODE_PRIVATE)
+        preferencias = getSharedPreferences("preferencias_usuario", MODE_PRIVATE)
     }
 
     fun abrirInicio(v: View?) {

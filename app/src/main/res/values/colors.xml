@@ -4,4 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#FF00FF00</color>
     <color name="red">#FFFF0000</color>
+
+    <!-- Tema claro -->
+    <color name="colorPrimary">#C42227</color>
+    <color name="colorPrimaryVariant">#D54137</color>
+    <color name="colorSecondary">#F1B08A</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorOnPrimary">#F9FAC4</color>
+    <color name="colorText">#000000</color>
 </resources>

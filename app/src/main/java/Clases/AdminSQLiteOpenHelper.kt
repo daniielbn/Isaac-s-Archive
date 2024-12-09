@@ -235,6 +235,13 @@ class AdminSQLiteOpenHelper(
         onCreate(db)
     }
 
+    fun consultarUsuarioContrasena(usuario: String, contrasena: String): Boolean {
+        val db = this.writableDatabase
+        val SQLQuery = "SELECT * FROM Usuarios WHERE usuario = ? AND contrasena = ?"
+        val cursor = db.rawQuery(SQLQuery, arrayOf(usuario, contrasena))
+        return cursor.moveToFirst()
+    }
+
     fun consultarUsuario(usuario: String): Int {
         val db = this.writableDatabase
         val SQLQuery = "SELECT id FROM Usuarios WHERE usuario = ?"

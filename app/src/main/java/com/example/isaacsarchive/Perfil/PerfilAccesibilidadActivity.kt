@@ -1,6 +1,7 @@
 package com.example.isaacsarchive.Perfil
 
 import BaseActivity.BaseActivity
+import BaseActivity.ReconocimientoVoz
 import Clases.AdminSQLiteOpenHelper
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,13 +13,15 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.isaacsarchive.Credenciales.LoginActivity
 import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
 import com.example.isaacsarchive.R
 
-class PerfilAccesibilidadActivity : BaseActivity() {
+class PerfilAccesibilidadActivity : ReconocimientoVoz() {
     private var tamanoTexto = 100
     private lateinit var usuario: String
     private lateinit var twPerfil: TextView
@@ -34,6 +37,7 @@ class PerfilAccesibilidadActivity : BaseActivity() {
     private lateinit var rbClaro: RadioButton
     private lateinit var rbOscuro: RadioButton
     private lateinit var rbDefecto: RadioButton
+    private lateinit var tbReconocimiento: ToggleButton
 
     private lateinit var ventanaInicio: Intent
     private lateinit var ventanaConfiguracion: Intent
@@ -83,6 +87,9 @@ class PerfilAccesibilidadActivity : BaseActivity() {
         rbDefecto = findViewById(R.id.rbDefecto)
         rbDefecto.contentDescription = "Botón de tema por defecto"
 
+        tbReconocimiento = findViewById(R.id.tbReconocimiento)
+        tbReconocimiento.contentDescription = "Botón de reconocimiento de voz"
+
         ventanaInicio = Intent(this, PrincipalObjetosActivity::class.java)
         ventanaConfiguracion = Intent(this, PerfilActivity::class.java)
         ventanaAccesibilidad = Intent(this, PerfilAccesibilidadActivity::class.java)
@@ -94,6 +101,7 @@ class PerfilAccesibilidadActivity : BaseActivity() {
 
         establecerImagen()
         comprobarTema()
+        comprobarReconocimiento()
         val antiguoEscalado = preferencias.getInt("tamanoTexto", 100)
         sbTamanoTexto.progress = antiguoEscalado
 
@@ -106,6 +114,16 @@ class PerfilAccesibilidadActivity : BaseActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+
+        tbReconocimiento.setOnCheckedChangeListener { _, isChecked ->
+            preferencias.edit()
+                .putBoolean("reconocimientoVoz", isChecked)
+                .apply()
+
+            if (isChecked) {
+                iniciarReconocimiento()
+            }
+        }
     }
 
     fun abrirInicio(v: View?) {
@@ -177,6 +195,28 @@ class PerfilAccesibilidadActivity : BaseActivity() {
             rbOscuro.isChecked = true
         } else {
             rbDefecto.isChecked = true
+        }
+    }
+
+    fun comprobarReconocimiento() {
+        val reconocimiento = preferencias.getBoolean("reconocimiento", false)
+        tbReconocimiento.isChecked = reconocimiento
+    }
+
+    override fun manejarComando(comando: String) {
+        when (comando) {
+            "inicio" -> abrirInicio(null)
+            "configuración" -> abrirConfiguracion(null)
+            "progreso" -> abrirProgreso(null)
+            "ayuda" -> abrirAyuda(null)
+            "cerrar sesión" -> cerrarSesion(null)
+            "actualizar texto" -> actualizarTexto(null)
+            "actualizar tema" -> actualizarTema(null)
+            "tema claro" -> rbClaro.isChecked = true
+            "tema oscuro" -> rbOscuro.isChecked = true
+            "tema por defecto" -> rbDefecto.isChecked = true
+            "reconocimiento de voz" -> tbReconocimiento.isChecked = !tbReconocimiento.isChecked
+            else -> Toast.makeText(this, "Comando no reconocido", Toast.LENGTH_SHORT).show()
         }
     }
 }

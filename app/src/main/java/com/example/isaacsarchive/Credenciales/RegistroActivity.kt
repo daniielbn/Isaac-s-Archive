@@ -1,8 +1,10 @@
 package com.example.isaacsarchive.Credenciales
 
 import BaseActivity.BaseActivity
+import BaseActivity.ReconocimientoVoz
 import Clases.AdminSQLiteOpenHelper
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -13,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.isaacsarchive.R
 import java.security.MessageDigest
 
-class RegistroActivity : BaseActivity() {
+class RegistroActivity : ReconocimientoVoz() {
     private lateinit var etUsuario: EditText
     private lateinit var etContrasena1: EditText
     private lateinit var etContrasena2: EditText
@@ -21,6 +23,7 @@ class RegistroActivity : BaseActivity() {
     private lateinit var buttonRegistar: Button
     private lateinit var buttonSalir: Button
     private lateinit var ventanaLogin: Intent
+    private lateinit var preferencias: SharedPreferences
     private lateinit var db: AdminSQLiteOpenHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +31,8 @@ class RegistroActivity : BaseActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_registro)
         db = AdminSQLiteOpenHelper(this, "IsaacsArchive", null, 8)
+
+        preferencias = getSharedPreferences("preferencias_usuario", MODE_PRIVATE)
 
         // Inicializamos los elementos de la vista
         etUsuario = findViewById(R.id.etUsuarioRegistrar)
@@ -43,6 +48,10 @@ class RegistroActivity : BaseActivity() {
         buttonSalir = findViewById(R.id.buttonSalir)
         buttonSalir.contentDescription = "Botón para salir de la ventana de registro"
         ventanaLogin = Intent(this, LoginActivity::class.java)
+
+        if (preferencias.getBoolean("reconocimientoVoz", false)) {
+            iniciarReconocimiento()
+        }
     }
 
     fun registrar(v: View?) {
@@ -109,4 +118,10 @@ class RegistroActivity : BaseActivity() {
         etContrasena2.text.clear()
     }
 
+    override fun manejarComando(comando: String) {
+        when (comando) {
+            "registro" -> registrar(null)
+            "salir" -> salir(null)
+        }
+    }
 }

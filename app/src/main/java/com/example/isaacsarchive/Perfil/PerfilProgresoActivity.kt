@@ -1,6 +1,7 @@
 package com.example.isaacsarchive.Perfil
 
 import BaseActivity.BaseActivity
+import BaseActivity.ReconocimientoVoz
 import Clases.AdminSQLiteOpenHelper
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -16,7 +17,7 @@ import com.example.isaacsarchive.Credenciales.LoginActivity
 import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
 import com.example.isaacsarchive.R
 
-class PerfilProgresoActivity : BaseActivity() {
+class PerfilProgresoActivity : ReconocimientoVoz() {
     private var contadorEliminar = 0
 
     private var totalObjetos = 0
@@ -123,6 +124,10 @@ class PerfilProgresoActivity : BaseActivity() {
         ventanaLogin = Intent(this, LoginActivity::class.java)
 
         preferencias = getSharedPreferences("preferencias_usuario", MODE_PRIVATE)
+
+        if (preferencias.getBoolean("reconocimientoVoz", false)) {
+            iniciarReconocimiento()
+        }
     }
 
     fun abrirInicio(v: View?) {
@@ -170,6 +175,17 @@ class PerfilProgresoActivity : BaseActivity() {
                 twPorcentajeObjetos.text = "0%"
                 twPorcentajeEnemigos.text = "0%"
             }
+        }
+    }
+
+    override fun manejarComando(comando: String) {
+        when (comando) {
+            "inicio" -> abrirInicio(null)
+            "configuración" -> abrirConfiguracion(null)
+            "ayuda" -> abrirAyuda(null)
+            "accesibilidad" -> abrirAccesibilidad(null)
+            "cerrar sesión" -> cerrarSesion(null)
+            else -> Toast.makeText(this, "Comando no reconocido", Toast.LENGTH_SHORT).show()
         }
     }
 }

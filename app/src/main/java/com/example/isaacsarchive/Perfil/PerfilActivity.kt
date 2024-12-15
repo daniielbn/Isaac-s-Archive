@@ -2,6 +2,7 @@ package com.example.isaacsarchive.Perfil
 
 import Adaptadores.AdaptadorSpinner
 import BaseActivity.BaseActivity
+import BaseActivity.ReconocimientoVoz
 import Clases.AdminSQLiteOpenHelper
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -21,7 +22,7 @@ import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
 import com.example.isaacsarchive.R
 import java.security.MessageDigest
 
-class PerfilActivity : BaseActivity() {
+class PerfilActivity : ReconocimientoVoz() {
     private var contadorEliminarCuenta = 0
     private lateinit var usuario: String
     private lateinit var twPerfil: TextView
@@ -111,6 +112,21 @@ class PerfilActivity : BaseActivity() {
             spinner.setSelection(items.indexOf(personajeUsuario))
         } else {
             spinner.setSelection(0)
+        }
+
+        if (preferencias.getBoolean("reconocimientoVoz", false)) {
+            iniciarReconocimiento()
+        }
+    }
+
+    override fun manejarComando(comando: String) {
+        when (comando) {
+            "inicio" -> abrirInicio(null)
+            "progreso" -> abrirProgreso(null)
+            "accesibilidad" -> abrirAccesibilidad(null)
+            "ayuda" -> abrirAyuda(null)
+            "cerrar sesión" -> cerrarSesion(null)
+            else -> Toast.makeText(this, "Comando no reconocido", Toast.LENGTH_SHORT).show()
         }
     }
 

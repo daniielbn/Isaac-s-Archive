@@ -1,6 +1,7 @@
 package com.example.isaacsarchive.Credenciales
 
 import BaseActivity.BaseActivity
+import BaseActivity.ReconocimientoVoz
 import Clases.AdminSQLiteOpenHelper
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,7 +19,7 @@ import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
 import com.example.isaacsarchive.R
 import java.security.MessageDigest
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : ReconocimientoVoz() {
     private lateinit var etUsuario: EditText
     private lateinit var etContrasenia: EditText
     private lateinit var twError: TextView
@@ -56,6 +58,10 @@ class LoginActivity : BaseActivity() {
 
         establecerTema(preferencias.getString("tema", "")!!)
         comprobarRecordarContrasena()
+
+        if (preferencias.getBoolean("reconocimiento", false)) {
+            iniciarReconocimiento()
+        }
     }
 
     fun iniciarSesion(v: View?) {
@@ -131,6 +137,14 @@ class LoginActivity : BaseActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
+    }
+
+    override fun manejarComando(comando: String) {
+        when (comando) {
+            "iniciar sesion" -> iniciarSesion(null)
+            "registrarse" -> registrarUsuario(null)
+            else -> Toast.makeText(this, "Comando no reconocido", Toast.LENGTH_SHORT).show()
         }
     }
 }

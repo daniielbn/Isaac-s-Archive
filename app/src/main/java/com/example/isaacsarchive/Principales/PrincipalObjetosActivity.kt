@@ -1,6 +1,7 @@
 package com.example.isaacsarchive.Principales
 
 import BaseActivity.BaseActivity
+import BaseActivity.ReconocimientoVoz
 import Clases.AdminSQLiteOpenHelper
 import Clases.Objeto
 import android.content.Intent
@@ -21,7 +22,7 @@ import com.example.isaacsarchive.R
 import com.example.isaacsarchive.databinding.ActivityPrincipalObjetosBinding
 import java.util.Locale
 
-class PrincipalObjetosActivity : BaseActivity() {
+class PrincipalObjetosActivity : ReconocimientoVoz() {
     private lateinit var binding: ActivityPrincipalObjetosBinding
     private lateinit var adaptador: AdaptadorObjeto
     private lateinit var ventanaEnemigos: Intent
@@ -73,6 +74,10 @@ class PrincipalObjetosActivity : BaseActivity() {
             }
 
         })
+
+        if (preferencias.getBoolean("reconocimiento_voz", false)) {
+            iniciarReconocimientoVoz(null)
+        }
     }
 
     fun abrirEnemigos(v: View?) {
@@ -135,6 +140,14 @@ class PrincipalObjetosActivity : BaseActivity() {
             imgMicrofono.setImageResource(R.drawable.microfono_claro)
         } else {
             imgMicrofono.setImageResource(R.drawable.microfono_oscuro)
+        }
+    }
+
+    override fun manejarComando(comando: String) {
+        when (comando) {
+            "enemigos" -> abrirEnemigos(null)
+            "perfil" -> abrirPerfil(null)
+            else -> Toast.makeText(this, "Comando no reconocido", Toast.LENGTH_SHORT).show()
         }
     }
 }

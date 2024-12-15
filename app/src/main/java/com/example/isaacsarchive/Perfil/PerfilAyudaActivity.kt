@@ -2,6 +2,7 @@ package com.example.isaacsarchive.Perfil
 
 import Adaptadores.AdaptadorTextoAyuda
 import BaseActivity.BaseActivity
+import BaseActivity.ReconocimientoVoz
 import Clases.AdminSQLiteOpenHelper
 import Clases.TextoAyuda
 import android.annotation.SuppressLint
@@ -10,6 +11,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +20,7 @@ import com.example.isaacsarchive.Principales.PrincipalObjetosActivity
 import com.example.isaacsarchive.R
 import com.example.isaacsarchive.databinding.ActivityPerfilAyudaBinding
 
-class PerfilAyudaActivity : BaseActivity() {
+class PerfilAyudaActivity : ReconocimientoVoz() {
     private lateinit var binding: ActivityPerfilAyudaBinding
     private lateinit var adaptador: AdaptadorTextoAyuda
     var listaTextosAyuda = ArrayList<TextoAyuda>()
@@ -70,6 +72,10 @@ class PerfilAyudaActivity : BaseActivity() {
         ventanaLogin = Intent(this, LoginActivity::class.java)
 
         preferencias = getSharedPreferences("preferencias_usuario", MODE_PRIVATE)
+
+        if (preferencias.getBoolean("reconocimientoVoz", false)) {
+            iniciarReconocimiento()
+        }
     }
 
     fun abrirInicio(v: View?) {
@@ -119,6 +125,18 @@ class PerfilAyudaActivity : BaseActivity() {
         lista.add(TextoAyuda("¿Cómo puedo ver mi progreso en el juego?", "Para ver tu progreso en el juego, debes pulsar sobre el botón de progreso en la pantalla principal."))
         lista.add(TextoAyuda("¿Cómo puedo cambiar la configuración de mi perfil?", "Para cambiar la configuración de tu perfil, debes pulsar sobre el botón de configuración en la pantalla principal."))
         lista.add(TextoAyuda("¿Cómo puedo cerrar sesión en la aplicación?", "Para cerrar sesión en la aplicación, debes pulsar sobre el botón de cerrar sesión en la pantalla principal."))
+        lista.add(TextoAyuda("¿Cómo puedo manjear el reconocimiento de voz?", "Para poder manejar la navegación de la aplicación por reconocimiento de voz, debes ir a la ventana de 'Accesibilidad' y activar la opción de 'Reconocimiento de voz'.\nLos comandos disponibles son:\n- 'inicio'\n - 'enemigos'\n- 'configuración'\n- 'progreso'\n- 'cerrar sesión'"))
         return lista
+    }
+
+    override fun manejarComando(comando: String) {
+        when (comando) {
+            "inicio" -> abrirInicio(null)
+            "configuración" -> abrirConfiguracion(null)
+            "progreso" -> abrirProgreso(null)
+            "accesibilidad" -> abrirAccesibilidad(null)
+            "cerrar sesión" -> cerrarSesion(null)
+            else -> Toast.makeText(this, "Comando no reconocido", Toast.LENGTH_SHORT).show()
+        }
     }
 }

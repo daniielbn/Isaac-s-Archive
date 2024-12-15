@@ -2,10 +2,12 @@ package com.example.isaacsarchive.Items
 
 import Adaptadores.AdaptadorComentario
 import BaseActivity.BaseActivity
+import BaseActivity.ReconocimientoVoz
 import Clases.AdminSQLiteOpenHelper
 import Clases.Comentario
 import Clases.Objeto
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -24,14 +26,13 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class ItemObjetoActivity : BaseActivity() {
+class ItemObjetoActivity : ReconocimientoVoz() {
     private lateinit var binding: ActivityItemObjetoBinding
     private lateinit var adaptadorComentario: AdaptadorComentario
     private lateinit var ventanaEnemigos: Intent
     private lateinit var ventanaPerfil: Intent
 
     private lateinit var db: AdminSQLiteOpenHelper
-
 
     private lateinit var twPerfil: TextView
     private lateinit var twTitulo: TextView
@@ -45,6 +46,7 @@ class ItemObjetoActivity : BaseActivity() {
 
     private lateinit var usuario: String
     private lateinit var objeto: Objeto
+    private lateinit var preferencias: SharedPreferences
     private var listaComentarios = mutableListOf<Comentario>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +60,7 @@ class ItemObjetoActivity : BaseActivity() {
         adaptadorComentario = AdaptadorComentario(listaComentarios, usuario)
         setupRecyclerView()
 
+        preferencias = getSharedPreferences("preferencias_usuario", MODE_PRIVATE)
 
         twPerfil = findViewById(R.id.twPerfil)
         twPerfil.contentDescription = "Nombre de perfil del usuario"
@@ -92,6 +95,10 @@ class ItemObjetoActivity : BaseActivity() {
                 objeto.desbloqueado = false
             }
             actualizarEstadoDesbloqueado(objeto)
+        }
+
+        if (preferencias.getBoolean("reconocimientoVoz", false)) {
+            iniciarReconocimiento()
         }
     }
 
@@ -168,5 +175,13 @@ class ItemObjetoActivity : BaseActivity() {
     private fun getFechaActual(): String {
         val formato =  DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
         return LocalDateTime.now().format(formato)
+    }
+
+    override fun manejarComando(comando: String) {
+        when (comando) {
+            "enemigos" -> abrirEnemigos(null)
+            "perfil" -> abrirPerfil(null)
+            else -> Toast.makeText(this, "Comando no reconocido", Toast.LENGTH_SHORT).show()
+        }
     }
 }

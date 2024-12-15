@@ -35,6 +35,7 @@ class AdaptadorComentario(private val comentarios: MutableList<Comentario>, priv
         private val fechaComentario: TextView = itemView.findViewById(R.id.twFechaComentario)
         private val usuarioComentario: TextView = itemView.findViewById(R.id.twUsuarioComentario)
         private val imgEliminar: ImageView = itemView.findViewById(R.id.imgEliminar)
+        private val imgPersonaje: ImageView = itemView.findViewById(R.id.imgPersonaje)
         private val db = AdminSQLiteOpenHelper(itemView.context, "IsaacsArchive", null, 8)
         private val preferencias: SharedPreferences = itemView.context.getSharedPreferences("preferencias_usuario", 0)
 
@@ -56,6 +57,12 @@ class AdaptadorComentario(private val comentarios: MutableList<Comentario>, priv
                 establecerImagen()
             }
 
+                imgPersonaje.setImageResource(itemView.context.resources.getIdentifier(
+                obtenerRuta(db.consultarNombreUsuario(comentario.id_usuario)),
+                "drawable",
+                itemView.context.packageName
+            ))
+
             imgEliminar.setOnClickListener {
                 if (db.eliminarComentario(comentario)) {
                     listaComentarios.removeAt(position)
@@ -75,6 +82,10 @@ class AdaptadorComentario(private val comentarios: MutableList<Comentario>, priv
                 imgEliminar.setImageResource(R.drawable.eliminar_oscuro)
             }
 
+        }
+
+        fun obtenerRuta(nombre: String): String {
+            return nombre.lowercase().replace(" ", "_").replace("'", "").replace(".", "").replace("&","")
         }
 
         private fun getFechaFormateada(fecha: String): String {

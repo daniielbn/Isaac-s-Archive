@@ -8,6 +8,260 @@
     android:background="@color/colorPrimary"
     tools:context=".Perfil.PerfilAccesibilidadActivity">
 
+    <ScrollView
+        android:id="@id/svMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:background="@color/colorBackground">
+
+            <TextView
+                android:id="@+id/twConfiguracionAccesibilidad2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="28dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:onClick="abrirConfiguracion"
+                android:text="Accesibilidad"
+                android:textColor="@color/colorText"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgAccesibilidad"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/twTamanoLetra"
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:onClick="abrirConfiguracion"
+                android:text="Ajusta el tamaño de la letra de la aplicación"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/twConfiguracionAccesibilidad2" />
+
+            <TextView
+                android:id="@+id/twTema"
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:onClick="abrirConfiguracion"
+                android:text="Tema de la aplicación"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.59"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonTexto" />
+
+            <TextView
+                android:id="@+id/twTituloReconocimiento"
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="296dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:onClick="abrirConfiguracion"
+                android:text="Activar / Desactivar reconocimiento de voz"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.636"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonTexto" />
+
+            <SeekBar
+                android:id="@+id/sbTamanoTexto"
+                android:layout_width="220dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="29dp"
+
+                android:backgroundTint="#FFFFFF"
+                android:max="200"
+                android:progressTint="#FFFFFF"
+                android:thumb="@drawable/seek_bar_thumb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/twTamanoLetra" />
+
+            <TextView
+                android:id="@+id/tw0Percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_italic"
+                android:text="0%"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sbTamanoTexto" />
+
+            <TextView
+                android:id="@+id/tw15Percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_italic"
+                android:text="25%"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/tw0Percent"
+                app:layout_constraintTop_toBottomOf="@+id/sbTamanoTexto" />
+
+            <TextView
+                android:id="@+id/tw50Percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_italic"
+                android:text="50%"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/tw15Percent"
+                app:layout_constraintTop_toBottomOf="@+id/sbTamanoTexto" />
+
+            <TextView
+                android:id="@+id/tw100Percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_italic"
+                android:text="100%"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/tw50Percent"
+                app:layout_constraintTop_toBottomOf="@+id/sbTamanoTexto" />
+
+            <Button
+                android:id="@+id/buttonTexto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/colorPrimaryVariant"
+                android:onClick="actualizarTexto"
+                android:text="Actualizar"
+                android:textColor="@color/colorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tw50Percent" />
+
+            <Button
+                android:id="@+id/buttonTema"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="28dp"
+                android:backgroundTint="@color/colorPrimaryVariant"
+                android:onClick="actualizarTema"
+                android:text="Actualizar"
+                android:textColor="@color/colorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgTema" />
+
+            <ImageView
+                android:id="@+id/imgAccesibilidad"
+                android:layout_width="38dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="7dp"
+                app:layout_constraintEnd_toStartOf="@+id/twConfiguracionAccesibilidad2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/accesibilidad_claro" />
+
+            <RadioGroup
+                android:id="@+id/rgTema"
+                android:layout_width="234dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="26dp"
+                android:checkedButton="@id/rbDefecto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/twTema">
+
+                <RadioButton
+                    android:id="@+id/rbClaro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Claro"
+                    android:textColor="@color/colorText" />
+
+                <RadioButton
+                    android:id="@+id/rbOscuro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Oscuro"
+                    android:textColor="@color/colorText" />
+
+                <RadioButton
+                    android:id="@+id/rbDefecto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Predeterminado"
+                    android:textColor="@color/colorText" />
+            </RadioGroup>
+
+            <ToggleButton
+                android:id="@+id/tbReconocimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="77dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/colorPrimaryVariant"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="ToggleButton"
+                android:textColor="@color/colorText"
+                android:textOff="Desactivado"
+                android:textOn="Activado"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/twTituloReconocimiento"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
     <ImageView
         android:id="@+id/imgLogoAccesibilidad"
         android:layout_width="67dp"
@@ -36,9 +290,8 @@
         android:layout_width="125dp"
         android:layout_height="1000dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="1dp"
         android:background="@color/colorSecondary"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/svMenu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoAccesibilidad">
 
@@ -115,213 +368,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/twAyudaAccesibilidad" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="285dp"
-        android:layout_height="1000dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/colorBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/twPerfilAccesibilidad">
-
-        <TextView
-            android:id="@+id/twConfiguracionAccesibilidad2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="28dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:onClick="abrirConfiguracion"
-            android:text="Accesibilidad"
-            android:textColor="@color/colorText"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgAccesibilidad"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/twTamanoLetra"
-            android:layout_width="231dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:onClick="abrirConfiguracion"
-            android:text="Ajusta el tamaño de la letra de la aplicación"
-            android:textAlignment="center"
-            android:textColor="@color/colorText"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/twConfiguracionAccesibilidad2" />
-
-        <TextView
-            android:id="@+id/twTema"
-            android:layout_width="231dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:onClick="abrirConfiguracion"
-            android:text="Tema de la aplicación"
-            android:textAlignment="center"
-            android:textColor="@color/colorText"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.59"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonTexto" />
-
-        <SeekBar
-            android:id="@+id/sbTamanoTexto"
-            android:layout_width="220dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="29dp"
-
-            android:backgroundTint="#FFFFFF"
-            android:max="200"
-            android:progressTint="#FFFFFF"
-            android:thumb="@drawable/seek_bar_thumb"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/twTamanoLetra" />
-
-        <TextView
-            android:id="@+id/tw0Percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/montserrat_italic"
-            android:text="0%"
-            android:textColor="@color/colorText"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sbTamanoTexto" />
-
-        <TextView
-            android:id="@+id/tw15Percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/montserrat_italic"
-            android:text="25%"
-            android:textColor="@color/colorText"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/tw0Percent"
-            app:layout_constraintTop_toBottomOf="@+id/sbTamanoTexto" />
-
-        <TextView
-            android:id="@+id/tw50Percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/montserrat_italic"
-            android:text="50%"
-            android:textColor="@color/colorText"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/tw15Percent"
-            app:layout_constraintTop_toBottomOf="@+id/sbTamanoTexto" />
-
-        <TextView
-            android:id="@+id/tw100Percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/montserrat_italic"
-            android:text="100%"
-            android:textColor="@color/colorText"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/tw50Percent"
-            app:layout_constraintTop_toBottomOf="@+id/sbTamanoTexto" />
-
-        <Button
-            android:id="@+id/buttonTexto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:backgroundTint="@color/colorPrimaryVariant"
-            android:onClick="actualizarTexto"
-            android:text="Actualizar"
-            android:textColor="@color/colorText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tw50Percent" />
-
-        <Button
-            android:id="@+id/buttonTema"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="28dp"
-            android:backgroundTint="@color/colorPrimaryVariant"
-            android:onClick="actualizarTema"
-            android:text="Actualizar"
-            android:textColor="@color/colorText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rgTema" />
-
-        <ImageView
-            android:id="@+id/imgAccesibilidad"
-            android:layout_width="38dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="7dp"
-            app:layout_constraintEnd_toStartOf="@+id/twConfiguracionAccesibilidad2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/accesibilidad_claro" />
-
-        <RadioGroup
-            android:id="@+id/rgTema"
-            android:layout_width="234dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="26dp"
-            android:checkedButton="@id/rbDefecto"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/twTema">
-
-            <RadioButton
-                android:id="@+id/rbClaro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Claro"
-                android:textColor="@color/colorText" />
-
-            <RadioButton
-                android:id="@+id/rbOscuro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Oscuro"
-                android:textColor="@color/colorText" />
-
-            <RadioButton
-                android:id="@+id/rbDefecto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Predeterminado"
-                android:textColor="@color/colorText" />
-        </RadioGroup>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
